@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap");
+
+:root {
+  --c-primary: #003580;
+  --c-secondary: #0071c2;
+  --c-primary-light: #1f4e90;
+  --c-primary-dark: #00224f;
+  --c-text: #262626;
+  --c-text-light: #6b6b6b;
+  --c-highlight: #febb02;
+}
