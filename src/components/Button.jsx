@@ -1,9 +1,9 @@
 import React from "react";
 
-const Button = ({ signIN }) => {
+const Button = ({ text }) => {
   return (
-    <button className="bg-secondary px-4 py-2 leading-none rounded-sm mt-4 text-base">
-      {signIN}
+    <button className="bg-secondary px-4 py-4 font-bold leading-none rounded-sm text-base text-white hover:bg-primaryLight">
+      {text}
     </button>
   );
 };
