@@ -10,7 +10,7 @@ import Button from "./Button";
 const CheckIn = () => {
   return (
     <div className="max-w-[1080px] mx-auto -mt-8">
-      <div className="flex flex-col md:flex-row shadow-xl rounded md:bg-highlight">
+      <div className="flex flex-col flex-wrap md:flex-row shadow-xl rounded">
         <label
           htmlFor="place"
           className="relative grow  block border-4 border-highlight"
@@ -82,12 +82,12 @@ const CheckIn = () => {
         <i className="bg-orange-100 p-3">
           <HiOutlineInformationCircle className="w-5 h-5 stroke-orange-800" />
         </i>
-        <span className="pl-4">
+        <span className="pl-4 hidden sm:block">
           Get the advice you need. Check the latest COVID-19 restrictions before
           you travel.
         </span>
         <a
-          className="text-primary"
+          className="text-primary pl-10 md:pl-2"
           href="https://www.booking.com/covid-19.html?label=gen173nr-1DCAEoggI46AdIM1gEaKsBiAEBmAExuAEXyAEM2AED6AEB-AECiAIBqAIDuAKu6pKTBsACAdICJDFmYjFiNTU0LTNkNmEtNDU4OS05NGRlLTUyOTdkMTVmYjc5Y9gCBOACAQ&aid=304142"
         >
           Learn more

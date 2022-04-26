@@ -5,7 +5,7 @@ import ImageHotels from "../assets/ImageHotels";
 
 const Gallery = (props) => {
   return (
-    <div className="max-w-[1080px] mx-auto">
+    <div className="max-w-[1080px] mx-auto px-4 lg:px-0">
       <h1 className="text-2xl font-bold mt-6">{props.exploreHeading}</h1>
       <p className="text-base">{props.subHeading}</p>
       <Carousel imageGallery={ImagePlaces} />

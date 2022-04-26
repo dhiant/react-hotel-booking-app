@@ -4,7 +4,7 @@ const SuggestedCard = (props) => {
   return (
     <div className="relative overflow-hidden">
       <img
-        src={props.image}
+        src={props.img}
         alt=""
         className="rounded-md w-[340px] h-[426px] bottom-10 brightness-90"
       />

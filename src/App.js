@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "./components/HeroSection";
 import CheckIn from "./components/CheckIn";
 import Gallery from "./components/Gallery";
-import SuggestedPlaces from "./components/SuggestedPlacesGallery";
+import SuggestedLocations from "./components/SuggestedLocationsGallery";
 const App = () => {
   return (
     <div>
@@ -13,7 +13,7 @@ const App = () => {
         subHeading="These popular destinations have a lot to offer"
         propertyHeading="Browse by property type"
       />
-      <SuggestedPlaces />
+      <SuggestedLocations />
     </div>
   );
 };

@@ -4,3 +4,16 @@
 .slick-slide > div {
   padding: 0 5px;
 }
+/* .slick-active {
+  width: 220px !important;
+} */
+/* Carousel Arrow Size */
+.slick-prev,
+.slick-next {
+  font-size: 30px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: "" !important;
+}
