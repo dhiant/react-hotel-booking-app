@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import "./Carousel.css";
+import "../styles/Carousel.css";
 import SuggestedCard from "./SuggestedCard";
 
 // Icons for Carousel Arrow
@@ -13,21 +13,49 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { MdArrowBackIos } from "react-icons/md";
 
 function SamplePrevArrow(props) {
-  const { className, onClick } = props;
+  const { className, style, onClick } = props;
   return (
-    <div className={`bg-red-600 ${className}`} onClick={onClick}>
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#fff",
+        color: "#404040",
+        height: "2rem",
+        width: "2rem",
+        borderRadius: "50%",
+      }}
+      onClick={onClick}
+    >
       {/* Icon for left carousel arrow */}
-      <MdArrowBackIos style={{ color: "#303030" }} />
+      <MdArrowBackIos style={{ fontSize: "20px" }} />
     </div>
   );
 }
 
 function SampleNextArrow(props) {
-  const { className, onClick } = props;
+  const { className, style, onClick } = props;
   return (
-    <div className={className} onClick={onClick}>
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#fff",
+        color: "#404040",
+        height: "2rem",
+        width: "2rem",
+        borderRadius: "50%",
+      }}
+      onClick={onClick}
+    >
       {/* Icon for right carousel arrow */}
-      <MdArrowForwardIos style={{ color: "#303030" }} />
+      <MdArrowForwardIos style={{ fontSize: "20px" }} />
     </div>
   );
 }
@@ -59,16 +87,8 @@ const SuggestedGalleryCarousel = ({ imageSuggestedLocations }) => {
       //     infinite: true,
       //   },
       // },
-      // {
-      //   breakpoint: 670,
-      //   settings: {
-      //     slidesToShow: 3,
-      //     slidesToScroll: 1,
-      //     initialSlide: 2,
-      //   },
-      // },
       {
-        breakpoint: 506,
+        breakpoint: 800,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -85,7 +105,7 @@ const SuggestedGalleryCarousel = ({ imageSuggestedLocations }) => {
     ],
   };
   return (
-    <div className="">
+    <div className="carouselContainer">
       <Slider {...settings}>
         {imageSuggestedLocations.map((item) => (
           <SuggestedCard
@@ -95,6 +115,8 @@ const SuggestedGalleryCarousel = ({ imageSuggestedLocations }) => {
             title={item.title}
             price={item.price}
             property={item.property}
+            width="w-[340px]"
+            height="h-[456px]"
           />
         ))}
       </Slider>

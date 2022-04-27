@@ -13,7 +13,7 @@ const App = () => {
         subHeading="These popular destinations have a lot to offer"
         propertyHeading="Browse by property type"
       />
-      <SuggestedLocations />
+      <SuggestedLocations articleHeading="Get inspiration for your next trip" />
     </div>
   );
 };

@@ -1,0 +1,28 @@
+.carouselContainer {
+  max-width: 100%;
+  padding: 0 2rem;
+}
+.slick-list {
+  margin: 0 -16px;
+}
+.slick-slide > div {
+  padding: 0 1px;
+}
+/* .slick-active {
+  width: 220px !important;
+} */
+/* Carousel Arrow Size */
+.slick-prev {
+  z-index: 10;
+  left: -20px;
+  box-shadow: rgba(67, 69, 72, 0.5) 0px 8px 24px;
+}
+.slick-next {
+  right: -20px;
+  box-shadow: rgba(67, 69, 72, 0.5) 0px 8px 24px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: "" !important;
+}

@@ -1,0 +1,28 @@
+.containerGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  padding: 0 0 0 0.5rem;
+}
+
+.containerGrid div:nth-child(-n + 3) {
+  grid-column: span 2;
+}
+
+.containerGrid div:nth-last-child(-n + 2) {
+  grid-column: span 3;
+}
+@media only screen and (max-width: 640px) {
+  .containerGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .containerGrid div:nth-last-child(-n + 2) {
+    padding: 0 1rem 0 0;
+  }
+}
+@media only screen and (min-width: 640px) {
+  .containerGrid {
+    padding: 0 1rem 0 1rem;
+  }
+}
