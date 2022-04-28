@@ -16,10 +16,6 @@ const App = () => {
       />
       <SuggestedLocations articleHeading="Get inspiration for your next trip" />
       <GuestsTravelers />
-      <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-        temporibus eos? Quos quasi perspiciatis ab ex esse nemo quam modi?
-      </h1>
     </div>
   );
 };

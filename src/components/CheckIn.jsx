@@ -1,7 +1,7 @@
 import React from "react";
-import { IoBedOutline } from "react-icons/io5";
+import { MdOutlineBed } from "react-icons/md";
 import { BiCalendar } from "react-icons/bi";
-import { IoPersonOutline } from "react-icons/io5";
+import { BsPerson } from "react-icons/bs";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
@@ -16,7 +16,7 @@ const CheckIn = () => {
           className="relative grow  block border-4 border-highlight"
         >
           <i className=" absolute left-3 top-4 text-stone-500">
-            <IoBedOutline />
+            <MdOutlineBed />
           </i>
           <input
             id="place"
@@ -44,7 +44,7 @@ const CheckIn = () => {
           className="relative block border-4 border-highlight"
         >
           <i className=" absolute left-3 top-4 text-stone-500">
-            <IoPersonOutline />
+            <BsPerson />
           </i>
           <i className=" absolute right-3 top-2 text-stone-500">
             <MdKeyboardArrowUp />
