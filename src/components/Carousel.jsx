@@ -123,6 +123,9 @@ const Carousel = ({ imageGallery }) => {
             img={item.img}
             title={item.title}
             propertyCount={item.propertyCount}
+            divWidth="w-44"
+            imgWidth="w-40"
+            imgHeight="h-36"
           />
         ))}
       </Slider>

@@ -3,6 +3,7 @@ import HeroSection from "./components/HeroSection";
 import CheckIn from "./components/CheckIn";
 import Gallery from "./components/Gallery";
 import SuggestedLocations from "./components/SuggestedLocationsGallery";
+import GuestsTravelers from "./components/Guests&Travelers";
 const App = () => {
   return (
     <div>
@@ -14,6 +15,11 @@ const App = () => {
         propertyHeading="Browse by property type"
       />
       <SuggestedLocations articleHeading="Get inspiration for your next trip" />
+      <GuestsTravelers />
+      <h1>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
+        temporibus eos? Quos quasi perspiciatis ab ex esse nemo quam modi?
+      </h1>
     </div>
   );
 };

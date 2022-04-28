@@ -71,22 +71,6 @@ const SuggestedGalleryCarousel = ({ imageSuggestedLocations }) => {
     prevArrow: <SamplePrevArrow />,
     initialSlide: 0,
     responsive: [
-      // {
-      //   breakpoint: 1080,
-      //   settings: {
-      //     slidesToShow: 5,
-      //     slidesToScroll: 1,
-      //     initialSlide: 2,
-      //   },
-      // },
-      // {
-      //   breakpoint: 1024,
-      //   settings: {
-      //     slidesToShow: 4,
-      //     slidesToScroll: 1,
-      //     infinite: true,
-      //   },
-      // },
       {
         breakpoint: 800,
         settings: {
