@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = (props) => {
   return (
-    <div className={`${props.divWidth} mt-5`}>
+    <div className={`${props.divWidth} mt-5 mx-auto`}>
       <a href={props.link} target="_blank" rel="noreferrer">
         <img
           src={props.img}

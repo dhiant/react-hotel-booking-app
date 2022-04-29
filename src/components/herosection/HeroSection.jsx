@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Navbar from "./Navbar";
-import Button from "./Button";
+import Button from "../Button";
 
 const HeroSection = () => {
   return (

@@ -25,7 +25,8 @@ const SuggestedLocations = (props) => {
               property={item.property}
               title={item.title}
               width="w-full"
-              height="h-[320px]"
+              height="sm:h-[280px] md:h-[320px]"
+              display="hidden"
             />
           ))}
         </div>

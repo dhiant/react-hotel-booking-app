@@ -1,5 +1,5 @@
 import React from "react";
-import HomeGuest from "../data/HomeGuest";
+// import HomeGuest from "../data/HomeGuest";
 import Card from "./Card";
 import GuestDetails from "./GuestDetails";
 
@@ -17,7 +17,7 @@ import "../styles/SwiperCarousel.css";
 const GuestsTravelers = (props) => {
   return (
     <div className="max-w-[1080px] mx-auto px-4 lg:px-0">
-      <h1 className="text-2xl font-bold mt-6">Homes Guests Love</h1>
+      <h1 className="text-2xl font-bold mt-6">{props.heading}</h1>
       <Swiper
         spaceBetween={5}
         slidesPerView={"auto"}
@@ -40,14 +40,14 @@ const GuestsTravelers = (props) => {
           },
         }}
       >
-        {HomeGuest.map((item) => (
+        {props.imgGallery.map((item) => (
           <SwiperSlide key={item.id}>
             <div className="w-60 mx-auto">
               <Card
                 link={item.link}
                 img={item.img}
-                divWidth="w-60"
-                imgWidth="w-60 md:w-56 lg:w-60"
+                divWidth="w-64 sm:w-64 md:w-64"
+                imgWidth="w-full sm:w-64 md:w-56 lg:w-60"
                 imgHeight="h-56"
               />
               <GuestDetails
@@ -58,6 +58,13 @@ const GuestsTravelers = (props) => {
                 rating={item.rating}
                 feedback={item.feedback}
                 reviews={item.reviews}
+                // for other travelers
+                country={item.country}
+                community={item.community}
+                travelers={item.travelers}
+                currency={props.currency}
+                // here giving ratingBox another prop name "display" to prevent from undefined value
+                ratingBox={props.ratingBox}
               />
             </div>
           </SwiperSlide>

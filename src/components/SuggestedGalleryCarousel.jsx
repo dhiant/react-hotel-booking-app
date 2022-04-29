@@ -100,7 +100,7 @@ const SuggestedGalleryCarousel = ({ imageSuggestedLocations }) => {
             price={item.price}
             property={item.property}
             width="w-[340px]"
-            height="h-[456px]"
+            height="h-56 sm:h-64 md:h-96"
           />
         ))}
       </Slider>
