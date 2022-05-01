@@ -5,7 +5,7 @@ import { BsPerson } from "react-icons/bs";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
-import Button from "../Button";
+import Button from "../reusable/Button";
 
 const CheckIn = () => {
   return (

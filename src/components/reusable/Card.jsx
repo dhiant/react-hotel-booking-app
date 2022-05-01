@@ -11,7 +11,7 @@ const Card = (props) => {
         />
         <div className="text-start">
           <p className="pt-3 font-bold text-base">{props.title}</p>
-          <p className="text-sm">{props.propertyCount}</p>
+          <p className="text-sm text-textLight">{props.propertyCount}</p>
         </div>
       </a>
     </div>

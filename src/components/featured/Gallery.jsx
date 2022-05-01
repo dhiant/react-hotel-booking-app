@@ -1,7 +1,7 @@
 import React from "react";
-import Carousel from "./Carousel";
-import ImagePlaces from "../data/ImagePlaces";
-import ImageHotels from "../data/ImageHotels";
+import Carousel from "../reusable/Carousel";
+import ImagePlaces from "./data/ImagePlaces";
+import ImageHotels from "./data/ImageHotels";
 
 const Gallery = (props) => {
   return (

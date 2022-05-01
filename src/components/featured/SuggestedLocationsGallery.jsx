@@ -1,7 +1,7 @@
 import React from "react";
 import SuggestedGalleryCarousel from "./SuggestedGalleryCarousel";
-import ImageSuggestedLocations from "../data/ImageSuggestedLocations";
-import ImagePromoteList from "../data/ImagePromoteList";
+import ImageSuggestedLocations from "./data/ImageSuggestedLocations";
+import ImagePromoteList from "./data/ImagePromoteList";
 import SuggestedCard from "./SuggestedCard";
 import "../styles/Grid.css";
 

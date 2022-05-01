@@ -7,7 +7,7 @@ const Header = () => {
   // };
   return (
     <header className="bg-primary text-white w-full md:max-w-[1080px] mx-auto">
-      <div className="flex flex-wrap items-center text-white justify-between py-2">
+      <div className=" text-white py-2">
         <div>
           <h2 className="text-2xl font-bold text-white">Booking.com</h2>
         </div>
@@ -29,7 +29,7 @@ const Header = () => {
           <button className="bg-white hover:bg-opacity-90 text-primaryLight px-4 py-2 leading-none text-sm font-medium">
             Register
           </button>
-          <button className="bg-white hover:bg-opacity-90 text-primaryLight px-4 py-2 leading-none text-sm font-medium mt-2 sm:mt-0">
+          <button className="bg-white hover:bg-opacity-90 text-primaryLight px-4 py-2 leading-none text-sm font-medium">
             Sign in
           </button>
         </div>
