@@ -7,10 +7,67 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import Button from "../reusable/Button";
 
+// importing react date range
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { useState } from "react";
+// to format date into string
+import { format } from "date-fns";
+
 const CheckIn = () => {
+  // to hide and show the date calendar
+  const [openingDate, setOpeningDate] = useState(false);
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+  // for adult children section
+  const [toggle, setToggle] = useState(false);
+  const [persons, setPersons] = useState({
+    adult: 2,
+    children: 0,
+    room: 1,
+  });
+  const handleOption = (name, operation) => {
+    setPersons((prevState) => {
+      return {
+        ...prevState,
+        [name]: operation === "d" ? prevState[name] - 1 : prevState[name] + 1,
+      };
+    });
+  };
+  /*   const handleDecrease = (name) => {
+    setPersons((prevState) => {
+      return {
+        ...prevState,
+        [name]: prevState[name] >= 0 ? prevState[name] - 1 : prevState[name],
+      };
+    });
+  }; */
+  const handleDecrease = (name) => {
+    setPersons((prevState) => {
+      return {
+        ...prevState,
+        [name]: prevState[name] === 0 ? 0 : prevState[name] - 1,
+      };
+    });
+  };
+  const handleIncrease = (name) => {
+    setPersons((prevState) => {
+      return {
+        ...prevState,
+        [name]: prevState[name] + 1,
+      };
+    });
+  };
+
   return (
     <div className="max-w-[1080px] mx-auto -mt-8">
-      <div className="flex flex-col flex-wrap md:flex-row shadow-xl rounded">
+      <div className="flex flex-col flex-wrap md:flex-row shadow-xl rounded bg-white">
         <label
           htmlFor="place"
           className="relative grow  block border-4 border-highlight"
@@ -26,19 +83,34 @@ const CheckIn = () => {
           />
         </label>
         <label
-          htmlFor="date"
+          htmlFor="checkindate"
           className="relative block md:border-y-4 border-x-4 md:border-x-0 border-highlight"
         >
           <i className=" absolute left-3 top-4 text-stone-500">
             <BiCalendar />
           </i>
           <input
-            id="date"
+            id="checkindate"
             type="button"
-            value="Check-in - Check-out"
-            className="px-8 py-3 bg-white hover:cursor-pointer"
+            onClick={() => setOpeningDate(!openingDate)}
+            value={`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
+              date[0].endDate,
+              "MM/dd/yyyy"
+            )}`}
+            className="px-8 py-3 bg-white hover:cursor-pointer placeholder-highlight"
           />
+          {openingDate && (
+            <DateRange
+              editableDateInputs={true}
+              onChange={(item) => setDate([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={date}
+              minDate={new Date()}
+              className="absolute right-2 top-14"
+            />
+          )}
         </label>
+
         <label
           htmlFor="persons"
           className="relative block border-4 border-highlight"
@@ -50,21 +122,71 @@ const CheckIn = () => {
             <MdKeyboardArrowUp />
             <MdKeyboardArrowDown />
           </i>
-          {/* <input
-            id="persons"
-            type="button"
-            value="2 adults . 9 children . 1 room"
-            className="px-8 py-3 bg-white hover:cursor-pointer"
-          /> */}
-          <button className="px-8 py-3 bg-white flex gap-x-1 ">
-            <span>2 adults </span>{" "}
+          <button
+            className="px-8 py-3 bg-white flex gap-x-1"
+            onClick={() => setToggle(!toggle)}
+          >
+            <span>{persons.adult} adults </span>{" "}
             <span className="leading-none font-bold">.</span>{" "}
-            <span>9 children </span>
+            <span>{persons.children} children </span>
             <span className="leading-none font-bold">.</span>{" "}
-            <span>1 room </span>
+            <span>{persons.room} room </span>
           </button>
+          {/* div for selecting no of persons */}
+          {toggle && (
+            <div className="absolute bg-white shadow-xl">
+              <div className="px-4 py-2">
+                <span className="mr-[22px]">Adult:</span>
+                <button
+                  className="px-2  border-2 border-primary mx-2"
+                  onClick={() => handleDecrease("adult")}
+                >
+                  -
+                </button>
+                <span>{persons.adult}</span>
+                <button
+                  className="px-2  border-2 border-primary mx-2"
+                  onClick={() => handleIncrease("adult")}
+                >
+                  +
+                </button>
+              </div>
+              <div className="px-4 py-2">
+                <span>Children:</span>
+                <button
+                  className="px-2  border-2 border-primary mx-2"
+                  onClick={() => handleDecrease("children")}
+                >
+                  -
+                </button>
+                <span>{persons.children}</span>
+                <button
+                  className="px-2  border-2 border-primary mx-2"
+                  onClick={() => handleIncrease("children")}
+                >
+                  +
+                </button>
+              </div>
+              <div className="px-4 py-2">
+                <span className="mr-[18px]">Room:</span>
+                <button
+                  className="px-2  border-2 border-primary mx-2"
+                  onClick={() => handleDecrease("room")}
+                >
+                  -
+                </button>
+                <span>{persons.room}</span>
+                <button
+                  className="px-2  border-2 border-primary mx-2"
+                  onClick={() => handleIncrease("room")}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          )}
         </label>
-        <div className="md:border-y-4 border-highlight border-r-4">
+        <div className="md:border-y-4 border-highlight border-r-4 bg-secondary">
           <Button text="Search" />
         </div>
       </div>

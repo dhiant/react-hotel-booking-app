@@ -11,7 +11,6 @@ const Footer = () => {
   // to hide the link section in small screens
   let display;
   display = window.innerWidth < 430 ? "hidden" : "block";
-  console.log(display);
   return (
     <div>
       {/* link section */}

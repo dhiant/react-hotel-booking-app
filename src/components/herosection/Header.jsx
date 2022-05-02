@@ -7,7 +7,7 @@ const Header = () => {
   // };
   return (
     <header className="bg-primary text-white w-full md:max-w-[1080px] mx-auto">
-      <div className=" text-white py-2">
+      <div className=" flex flex-wrap items-center text-white justify-between py-2">
         <div>
           <h2 className="text-2xl font-bold text-white">Booking.com</h2>
         </div>
