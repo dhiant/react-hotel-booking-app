@@ -12,22 +12,42 @@ const navbar = () => {
         <IoBedOutline />
         <span className="ml-2">Stays</span>
       </button>
-      <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
-        <IoAirplaneOutline />
-        <span className="ml-2">Flights</span>
-      </button>
-      <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
-        <RiCarLine />
-        <span className="ml-2">Car rentals</span>
-      </button>
-      <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
-        <MdOutlineAttractions />
-        <span className="ml-2">Attractions</span>
-      </button>
-      <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
-        <RiTaxiWifiLine />
-        <span className="ml-2">Airport Taxis</span>
-      </button>
+      <a
+        href="https://booking.kayak.com/?&sid=74660c001dd0d4c55c1b7bcd0a8b7ca5&aid=304142&label=gen173nr-1FCAEoggI46AdIM1gEaKsBiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAKXnr6TBsACAdICJDViMTRlNjRjLTU4MzktNDRmMC05ZWFkLTgyZDA3YzYwZWE2ZdgCBuACAQ"
+        alt="search flights"
+      >
+        <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
+          <IoAirplaneOutline />
+          <span className="ml-2">Flights</span>
+        </button>
+      </a>
+      <a
+        href="https://www.booking.com/cars/index.en-gb.html?label=gen173nr-1FCAEoggI46AdIM1gEaKsBiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAKXnr6TBsACAdICJDViMTRlNjRjLTU4MzktNDRmMC05ZWFkLTgyZDA3YzYwZWE2ZdgCBuACAQ&sid=74660c001dd0d4c55c1b7bcd0a8b7ca5&adplat=cross_product_bar&"
+        alt="car rentals"
+      >
+        <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
+          <RiCarLine />
+          <span className="ml-2">Car rentals</span>
+        </button>
+      </a>
+      <a
+        href="https://www.booking.com/attractions/index.en-gb.html?label=gen173nr-1FCAEoggI46AdIM1gEaKsBiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAKXnr6TBsACAdICJDViMTRlNjRjLTU4MzktNDRmMC05ZWFkLTgyZDA3YzYwZWE2ZdgCBuACAQ&sid=74660c001dd0d4c55c1b7bcd0a8b7ca5"
+        alt="search your favourite destinations"
+      >
+        <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
+          <MdOutlineAttractions />
+          <span className="ml-2">Attractions</span>
+        </button>
+      </a>
+      <a
+        href="https://www.booking.com/taxi/index.en-gb.html?label=gen173nr-1FCAEoggI46AdIM1gEaKsBiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAKXnr6TBsACAdICJDViMTRlNjRjLTU4MzktNDRmMC05ZWFkLTgyZDA3YzYwZWE2ZdgCBuACAQ&sid=74660c001dd0d4c55c1b7bcd0a8b7ca5&adplat=cross_product_bar&"
+        alt="book airport taxi"
+      >
+        <button className="hover:bg-primaryLight rounded-full inline-flex justify-center items-center px-3 py-2">
+          <RiTaxiWifiLine />
+          <span className="ml-2">Airport Taxis</span>
+        </button>
+      </a>
     </div>
   );
 };
