@@ -12,12 +12,18 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useState } from "react";
+
 // to format date into string
 import { format } from "date-fns";
-// importing location icon
-import { GoLocation } from "react-icons/go";
+// usenavigate to navigate into hotels page
+import { useNavigate } from "react-router-dom";
+import DestinationsName from "./DestinationsName";
 
 const CheckIn = () => {
+  // show or hide search destinations div
+  const [displayDestination, setDisplayDestination] = useState("hidden");
+  const [destination, setDestination] = useState("");
+
   // to hide and show the date calendar
   const [openingDate, setOpeningDate] = useState(false);
   const [date, setDate] = useState([
@@ -27,13 +33,15 @@ const CheckIn = () => {
       key: "selection",
     },
   ]);
-  // for selection no of persons
+  // to select no of persons
   const [toggle, setToggle] = useState(false);
   const [persons, setPersons] = useState({
     adult: 2,
     children: 0,
     room: 1,
   });
+  // to show warning message when destination name is empty
+  const [showWarning, setShowWarning] = useState(false);
   // to decremet the counter
   const handleDecrease = (name) => {
     setPersons((prevState) => {
@@ -52,9 +60,17 @@ const CheckIn = () => {
       };
     });
   };
-  // show or hide search destinations div
-  // let displaySearchDestination = "hidden";
-  const [displayDestination, setDisplayDestination] = useState("hidden");
+  // to navigate into hotels page
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    if (destination === "") {
+      setShowWarning(true);
+    } else {
+      navigate("/hotels", { state: { destination, date, persons } });
+    }
+    // navigate("/hotels", { state: { destination, date, persons } });
+  };
+
   return (
     <div className="max-w-[1080px] mx-auto -mt-8">
       <div className="flex flex-col flex-wrap md:flex-row shadow-xl rounded bg-white">
@@ -66,57 +82,43 @@ const CheckIn = () => {
           <i className=" absolute left-3 top-4 text-stone-500">
             <MdOutlineBed />
           </i>
+
           <input
             id="place"
             type="search"
             placeholder="Where are you going?"
             className="px-8 py-3 w-full "
-            onClick={() => setDisplayDestination("block")}
-            onPointerOut={() => setDisplayDestination("hidden")}
+            onChange={(e) => setDestination(e.target.value)}
+            value={destination}
+            onFocus={() => setDisplayDestination("block")}
+            onBlur={() => setDisplayDestination("hidden")}
           />
+          {showWarning && (
+            <>
+              <div className="bg-red-700 text-white text-xs p-1 absolute top-10">
+                Please enter a destination to start searching
+              </div>
+            </>
+          )}
           {/*search destinations div */}
           <div
-            className={` ${displayDestination} pl-3 py-2 pr-20 z-10 absolute bg-white top-14`}
+            className={` ${displayDestination} w-72 py-2 z-10 absolute bg-white top-14`}
           >
-            <h1 className="text-sm font-normal">Popular nearby destinations</h1>
-            <div className="flex items-center mt-3 mb-2">
-              <GoLocation />
-              <div className="pl-3">
-                <h1 className="font-medium text-sm">Pokhara</h1>
-                <p className="py-0 text-xs text-textLight">Nepal</p>
-              </div>
-            </div>
-            <div className="flex items-center mb-2">
-              <GoLocation />
-              <div className="pl-3">
-                <h1 className="font-medium text-sm">Kathmandu</h1>
-                <p className="py-0 text-xs text-textLight">Nepal</p>
-              </div>
-            </div>
-            <div className="flex items-center mb-2">
-              <GoLocation />
-              <div className="pl-3">
-                <h1 className="font-medium text-sm">Nagarkot</h1>
-                <p className="py-0 text-xs text-textLight">Nepal</p>
-              </div>
-            </div>
-            <div className="flex items-center mb-2">
-              <GoLocation />
-              <div className="pl-3">
-                <h1 className="font-medium text-sm">Sauraha</h1>
-                <p className="py-0 text-xs text-textLight">Nepal</p>
-              </div>
-            </div>
-            <div className="flex items-center mb-2">
-              <GoLocation />
-              <div className="pl-3">
-                <h1 className="font-medium text-sm">Chitwan</h1>
-                <p className="py-0 text-xs text-textLight">Nepal</p>
-              </div>
-            </div>
+            <h1 className="text-sm font-normal mb-3 pl-3">
+              Popular nearby destinations
+            </h1>
+            {["Pokhara", "Kathmandu", "Nagarkot", "Sauraha", "Chitwan"].map(
+              (location, index) => (
+                <DestinationsName
+                  key={index}
+                  location={location}
+                  setDestination={setDestination}
+                />
+              )
+            )}
           </div>
         </label>
-
+        {/* Check in Check out date */}
         <label
           htmlFor="checkindate"
           className="relative block md:border-y-4 border-x-4 md:border-x-0 border-highlight"
@@ -141,11 +143,11 @@ const CheckIn = () => {
               moveRangeOnFirstSelection={false}
               ranges={date}
               minDate={new Date()}
-              className="absolute right-2 top-14"
+              className="absolute right-2 top-14 z-10"
             />
           )}
         </label>
-
+        {/* Select no of persons children rooms */}
         <label
           htmlFor="persons"
           className="relative block border-4 border-highlight"
@@ -169,7 +171,7 @@ const CheckIn = () => {
           </button>
           {/* div for selecting no of persons */}
           {toggle && (
-            <div className="absolute right-2 bg-white shadow-xl px-6 py-3 w-72 z-10 ">
+            <div className="absolute top-14 bg-white shadow-xl px-6 py-3 w-72 z-10 ">
               <div className="py-2">
                 <span className="mr-[22px]">Adults:</span>
                 <button
@@ -258,7 +260,7 @@ const CheckIn = () => {
         </label>
         {/* Search button in checkin */}
         <div className="md:border-y-4 border-highlight border-r-4 bg-secondary">
-          <Button text="Search" />
+          <Button text="Search" handleSearch={handleSearch} padding="p-4" />
         </div>
       </div>
       {/* checkbox */}

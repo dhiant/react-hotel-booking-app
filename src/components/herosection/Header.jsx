@@ -1,83 +1,54 @@
 import React from "react";
 import { BsQuestionCircle } from "react-icons/bs";
-import { useState } from "react";
-
+import ReactTooltip from "react-tooltip";
 const Header = () => {
-  // let displayCurrency = "hidden";
-  // let displayLanguage = "hidden";
-  // to show or hide hover effect on buttons
-  const [displayCurrency, setDisplayCurrency] = useState("hidden");
-  const [displayLanguage, setDisplayLanguage] = useState("hidden");
-  const [displayCustomerService, setDisplayCustomerService] =
-    useState("hidden");
-  const handleCurrencyShow = () => setDisplayCurrency("block");
-  const handleCurrencyHide = () => setDisplayCurrency("hidden");
-
-  const handleLanguageShow = () => setDisplayLanguage("block");
-  const handleLanguageHide = () => setDisplayLanguage("hidden");
-
-  const handleCustomerServiceShow = () => setDisplayCustomerService("block");
-  const handleCustomerServiceHide = () => setDisplayCustomerService("hidden");
-
   return (
     <header className="bg-primary text-white w-full md:max-w-[1080px] mx-auto">
       <div className=" flex flex-wrap items-center text-white justify-between py-2">
         <div>
           <h2 className="text-2xl font-bold text-white">Booking.com</h2>
         </div>
-        <div className="flex gap-x-4 md:gap-x-6 flex-wrap items-center text-base relative">
+        <div className="flex gap-x-4 md:gap-x-6 flex-wrap items-center text-base">
           {/* NPR Button */}
-          <button
-            className="font-bold p-4 hover:bg-primaryLight"
-            onMouseEnter={() => handleCurrencyShow()}
-            onMouseLeave={() => handleCurrencyHide()}
-          >
-            NPR
-          </button>
-          {/* Hover effect for NPR */}
-          <div
-            className={`${displayCurrency} bg-black text-white absolute top-16 left-1 md:-left-10`}
-          >
-            <div className="w-4 h"></div>
-            <h1 className="p-1 text-sm">Choose your currency</h1>
+          <div className="relative">
+            <button
+              className="font-bold p-4 hover:bg-primaryLight"
+              data-tip="Choose your language"
+            >
+              NPR
+              <ReactTooltip place="bottom" type="dark" effect="solid" />
+            </button>
           </div>
           {/* Flag Button */}
-          <button
-            className="hover:bg-primaryLight p-4"
-            onMouseEnter={() => handleLanguageShow()}
-            onMouseLeave={() => handleLanguageHide()}
-          >
-            <img
-              src="https://cf.bstatic.com/static/img/flags/new/48-squared/us/fa2b2a0e643c840152ba856a8bb081c7ded40efa.png"
-              alt="USA flag"
-              className="rounded-full w-6 h-6 "
-            />
-          </button>
-          {/* Hover effect for flag */}
-          <div
-            className={`${displayLanguage} bg-black text-white absolute top-16 left-10`}
-          >
-            <div className="w-4 h"></div>
-            <h1 className="p-1 text-sm">Choose your language</h1>
-          </div>
-          <a
-            href="https://secure.booking.com/help.en-gb.html?label=gen173nr-1FCAEoggI46AdIM1gEaKsBiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAKXnr6TBsACAdICJDViMTRlNjRjLTU4MzktNDRmMC05ZWFkLTgyZDA3YzYwZWE2ZdgCBuACAQ&sid=74660c001dd0d4c55c1b7bcd0a8b7ca5#/"
-            alt="contact customer service"
-          >
+          <div className="relative">
             <button
               className="hover:bg-primaryLight p-4"
-              onMouseEnter={() => handleCustomerServiceShow()}
-              onMouseLeave={() => handleCustomerServiceHide()}
+              data-tip="Choose your currency"
             >
-              <BsQuestionCircle className="w-6 h-8 " />
+              <img
+                src="https://cf.bstatic.com/static/img/flags/new/48-squared/us/fa2b2a0e643c840152ba856a8bb081c7ded40efa.png"
+                alt="USA flag"
+                className="rounded-full w-6 h-6 "
+              />
+              <ReactTooltip place="bottom" type="dark" effect="solid" />
             </button>
-          </a>
-          <div
-            className={`${displayCustomerService} bg-black text-white absolute top-16 left-28`}
-          >
-            <div className="w-4 h"></div>
-            <h1 className="p-1 text-sm">Contact Customer Service</h1>
           </div>
+          {/* Contact Cusomer Service */}
+          <div className="relative">
+            <a
+              href="https://secure.booking.com/help.en-gb.html?label=gen173nr-1FCAEoggI46AdIM1gEaKsBiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAKXnr6TBsACAdICJDViMTRlNjRjLTU4MzktNDRmMC05ZWFkLTgyZDA3YzYwZWE2ZdgCBuACAQ&sid=74660c001dd0d4c55c1b7bcd0a8b7ca5#/"
+              alt="contact customer service"
+            >
+              <button
+                className="hover:bg-primaryLight p-4"
+                data-tip="Contact Customer Service"
+              >
+                <BsQuestionCircle className="w-6 h-8 " />
+                <ReactTooltip place="bottom" type="dark" effect="solid" />
+              </button>
+            </a>
+          </div>
+          {/* List your property */}
           <a
             href="https://join.booking.com/?lang=en-gb&utm_source=topbar&utm_medium=frontend&amp;label=gen173nr-1FCAEoggI46AdIM1gEaKsBiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAKXnr6TBsACAdICJDViMTRlNjRjLTU4MzktNDRmMC05ZWFkLTgyZDA3YzYwZWE2ZdgCBuACAQ&amp;aid=304142"
             alt="list your property"
