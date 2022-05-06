@@ -4,7 +4,8 @@ import { GoSearch } from "react-icons/go";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { BsQuestionCircle } from "react-icons/bs";
 import Button from "./reusable/Button";
-import { DateRangePicker } from "react-date-range";
+import { Calendar } from "react-date-range";
+import * as locales from "react-date-range/dist/locale";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useLocation } from "react-router-dom";
@@ -12,30 +13,41 @@ import { format } from "date-fns";
 import ReactTooltip from "react-tooltip";
 
 const Form = () => {
+  // show and hide calendar
   const [checkInDisplay, setCheckInDisplay] = useState(false);
-  const [checkInDate, setCheckInDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: null,
-      key: "selection",
-    },
-  ]);
   const [checkOutDisplay, setCheckOutDisplay] = useState(false);
-  const [checkOutDate, setcheckOutDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: null,
-      key: "selection",
-    },
-  ]);
+  // react calendar
+  const [locale, setLocale] = React.useState("enUS");
+  // const [checkInDate, setCheckInDate] = useState(null);
+  // const [checkOutDate, setCheckOutDate] = useState(null);
   const location = useLocation();
+  // data from home page
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [persons, setPersons] = useState(location.state.persons);
+  console.log(date);
+  // react calendar
+  const nameMapper = {
+    enUS: "English (United States)",
+    es: "Spanish",
+    hi: "Hindi",
+    pt: "Portuguese",
+    ro: "Romanian",
+    ru: "Russian",
+    uk: "Ukrainian",
+    vi: "Vietnamese",
+    zhCN: "Chinese Simplified",
+  };
+  const localeOptions = Object.keys(locales)
+    .map((key) => ({
+      value: key,
+      label: `${key} - ${nameMapper[key] || ""}`,
+    }))
+    .filter((item) => nameMapper[item.value]);
 
   return (
     <form action="">
-      <div className="bg-highlight px-4 py-3 lg:ml-10 max-w-[280px] rounded-sm">
+      <div className="bg-highlight px-4 py-3 lg:ml-10 max-w-[280px] rounded-sm hidden lg:block  ">
         <h1 className="text-xl font-medium">Search</h1>
         {/* destination name */}
         <div className="relative">
@@ -76,14 +88,25 @@ const Form = () => {
         </div>
         {/* select check in date */}
         {checkInDisplay && (
-          <DateRangePicker
-            onChange={(item) => setCheckInDate([item.selection])}
-            showSelectionPreview={false}
-            moveRangeOnFirstSelection={false}
-            months={1}
-            ranges={checkInDate}
-            direction="horizontal"
-          />
+          <div style={{ display: "flex", flexFlow: "column nowrap" }}>
+            <select
+              style={{ margin: "20px auto" }}
+              onChange={(e) => setLocale(e.target.value)}
+              value={locale}
+            >
+              {localeOptions.map((option, i) => (
+                <option value={option.value} key={i}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <Calendar
+              onChange={(item) => setDate(item)}
+              locale={locales[locale]}
+              date={date[0].startDate}
+              className="z-10 absolute"
+            />
+          </div>
         )}
         {/* check out date */}
         <div className="relative">
@@ -103,14 +126,25 @@ const Form = () => {
         </div>
         {/* select check out date */}
         {checkOutDisplay && (
-          <DateRangePicker
-            onChange={(item) => setcheckOutDate([item.selection])}
-            showSelectionPreview={false}
-            moveRangeOnFirstSelection={false}
-            months={1}
-            ranges={checkOutDate}
-            direction="horizontal"
-          />
+          <div style={{ display: "flex", flexFlow: "column nowrap" }}>
+            <select
+              style={{ margin: "20px auto" }}
+              onChange={(e) => setLocale(e.target.value)}
+              value={locale}
+            >
+              {localeOptions.map((option, i) => (
+                <option value={option.value} key={i}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <Calendar
+              onChange={(item) => setDate(item)}
+              locale={locales[locale]}
+              date={date[0].endDate}
+              className="z-10 absolute"
+            />
+          </div>
         )}
         {/* select persons children rooms */}
         <div className="">

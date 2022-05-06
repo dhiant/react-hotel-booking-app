@@ -8,11 +8,11 @@ const Header = () => {
         <div>
           <h2 className="text-2xl font-bold text-white">Booking.com</h2>
         </div>
-        <div className="flex gap-x-4 md:gap-x-6 flex-wrap items-center text-base">
+        <div className="flex gap-x-2 md:gap-x-6 gap-y-2 flex-wrap items-center text-base">
           {/* NPR Button */}
           <div className="relative">
             <button
-              className="font-bold p-4 hover:bg-primaryLight"
+              className="font-bold px-2 xs:p-4 hover:bg-primaryLight"
               data-tip="Choose your language"
             >
               NPR

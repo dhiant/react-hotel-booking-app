@@ -3,8 +3,8 @@ import Header from "../components/herosection/Header";
 import Navbar from "../components/herosection/Navbar";
 import Form from "../components/Form";
 import HotelItem from "../components/HotelItem";
-// import MailList from "../components/MailList";
-// import Footer from "../components/footer/Footer";
+import MailList from "../components/MailList";
+import Footer from "../components/footer/Footer";
 
 const Hotels = () => {
   return (
@@ -13,8 +13,8 @@ const Hotels = () => {
         <Header />
         <Navbar />
       </div>
-      <div className="flex items-start lg:justify-evenly justify-between mt-8">
-        <Form className="items-start" />
+      <div className="flex items-start justify-center gap-x-10 mt-8">
+        <Form className="" />
         <div className="flex flex-col gap-4">
           <HotelItem />
           <HotelItem />
@@ -23,8 +23,8 @@ const Hotels = () => {
           <HotelItem />
         </div>
       </div>
-      {/* <MailList />
-      <Footer /> */}
+      <MailList />
+      <Footer />
     </div>
   );
 };
