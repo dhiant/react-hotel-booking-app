@@ -7,7 +7,7 @@ import GuestsTravelers from "../components/featured/Guests&Travelers";
 
 import HomeGuest from "../components/featured/data/HomeGuest";
 import OtherTravelers from "../components/featured/data/OtherTravelers";
-import LogIn from "../components/logIn";
+import LogIn from "../components/LogIn";
 import CountryList from "../components/CountryList";
 import MailList from "../components/MailList";
 import Footer from "../components/footer/Footer";

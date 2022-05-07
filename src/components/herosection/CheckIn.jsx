@@ -71,6 +71,7 @@ const CheckIn = () => {
     // navigate("/hotels", { state: { destination, date, persons } });
   };
 
+  console.log(destination);
   return (
     <div className="max-w-[1080px] mx-auto -mt-8">
       <div className="flex flex-col flex-wrap md:flex-row shadow-xl rounded bg-white">
@@ -88,10 +89,10 @@ const CheckIn = () => {
             type="search"
             placeholder="Where are you going?"
             className="px-8 py-3 w-full "
-            onChange={(e) => setDestination(e.target.value)}
+            // onChange={(e) => setDestination(e.target.value)}
             value={destination}
             onFocus={() => setDisplayDestination("block")}
-            onBlur={() => setDisplayDestination("hidden")}
+            // onBlur={() => setDisplayDestination("hidden")}
           />
           {showWarning && (
             <>

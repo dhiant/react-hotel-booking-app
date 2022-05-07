@@ -18,14 +18,24 @@ const Form = () => {
   const [checkOutDisplay, setCheckOutDisplay] = useState(false);
   // react calendar
   const [locale, setLocale] = React.useState("enUS");
-  // const [checkInDate, setCheckInDate] = useState(null);
-  // const [checkOutDate, setCheckOutDate] = useState(null);
+
   const location = useLocation();
+  const [checkInDate, setCheckInDate] = useState(
+    location.state ? location.state.date[0].startDate : new Date()
+  );
+  const [checkOutDate, setCheckOutDate] = useState(
+    location.state ? location.state.date[0].endDate : new Date()
+  );
   // data from home page
-  const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
-  const [persons, setPersons] = useState(location.state.persons);
-  console.log(date);
+  const [destination, setDestination] = useState(
+    location.state ? location.state.destination : ""
+  );
+  // const [date, setDate] = useState(location.state.date);
+  // const [endDate,endDate]=useState(location.start.date[0].endDate)
+  const [persons, setPersons] = useState(
+    location.state ? location.state.persons : []
+  );
+
   // react calendar
   const nameMapper = {
     enUS: "English (United States)",
@@ -47,7 +57,7 @@ const Form = () => {
 
   return (
     <form action="">
-      <div className="bg-highlight px-4 py-3 lg:ml-10 max-w-[280px] rounded-sm hidden lg:block  ">
+      <div className="bg-highlight px-4 py-3 lg:ml-10 max-w-[280px] rounded-sm hidden lg:block">
         <h1 className="text-xl font-medium">Search</h1>
         {/* destination name */}
         <div className="relative">
@@ -79,7 +89,7 @@ const Form = () => {
           </i>
           <input
             type="button"
-            value={`${format(date[0].startDate, "EEEE dd MMMM yyyy")}`}
+            value={`${format(checkInDate, "EEEE MMMM dd yyyy")}`}
             className="bg-white py-1 rounded-sm w-full hover:cursor-pointer"
             onClick={() => {
               setCheckInDisplay(!checkInDisplay);
@@ -101,9 +111,12 @@ const Form = () => {
               ))}
             </select>
             <Calendar
-              onChange={(item) => setDate(item)}
+              onChange={(item) => {
+                console.log("Item is", item);
+                setCheckInDate(item);
+              }}
               locale={locales[locale]}
-              date={date[0].startDate}
+              date={checkInDate}
               className="z-10 absolute"
             />
           </div>
@@ -119,7 +132,7 @@ const Form = () => {
           </i>
           <input
             type="button"
-            value={`${format(date[0].endDate, "EEEE dd  MMMM yyyy")}`}
+            value={`${format(checkOutDate, "EEEE MMMM dd yyyy")}`}
             className="bg-white py-1 rounded-sm w-full hover:cursor-pointer"
             onClick={() => setCheckOutDisplay(!checkOutDisplay)}
           />
@@ -139,9 +152,9 @@ const Form = () => {
               ))}
             </select>
             <Calendar
-              onChange={(item) => setDate(item)}
+              onChange={(item) => setCheckOutDate(item)}
               locale={locales[locale]}
-              date={date[0].endDate}
+              date={checkOutDate}
               className="z-10 absolute"
             />
           </div>

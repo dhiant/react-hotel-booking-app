@@ -22,6 +22,7 @@ const MailList = () => {
               text="Subscribe"
               fontWeight="font-normal"
               className="rounded-sm"
+              padding="px-4"
             />
           </div>
           <label htmlFor="subscribe" className="">

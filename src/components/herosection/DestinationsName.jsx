@@ -3,12 +3,18 @@ import React from "react";
 import { GoLocation } from "react-icons/go";
 
 const DestinationsName = ({ location, setDestination }) => {
+  console.log("location", location);
+  console.log(setDestination);
+  React.useEffect(() => {
+    setDestination("TextNew");
+  }, []);
+
   return (
-    <div
-      className="hover:bg-border pl-3"
-      onClick={() => setDestination(location)}
-    >
-      <button className="flex items-center mb-2 py-1m ">
+    <div className="hover:bg-border pl-3">
+      <button
+        className="flex items-center mb-2 py-1m "
+        onClick={() => setDestination(location)}
+      >
         <GoLocation />
         <div className="pl-3 flex flex-col">
           <h1 className="font-medium text-sm">{location}</h1>
