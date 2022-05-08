@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "../reusable/Carousel";
+import Carousel from "../common/Carousel";
 import ImagePlaces from "./data/ImagePlaces";
 import ImageHotels from "./data/ImageHotels";
 

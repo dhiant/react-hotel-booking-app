@@ -1,6 +1,6 @@
 import React from "react";
 // import HomeGuest from "../data/HomeGuest";
-import Card from "../reusable/Card";
+import Card from "../common/Card";
 import GuestDetails from "./GuestDetails";
 
 // Import Swiper React components

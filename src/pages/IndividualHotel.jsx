@@ -1,23 +1,46 @@
 import React from "react";
+import { useState } from "react";
 import "./IndividualHotel.css";
 import Header from "../components/herosection/Header";
 import Navbar from "../components/herosection/Navbar";
 import Form from "../components/Form";
-import Button from "../components/reusable/Button";
+import Button from "../components/common/Button";
 import MailList from "../components/MailList";
 import Footer from "../components/footer/Footer";
 import { AiFillLike } from "react-icons/ai";
-import { BsSuitHeartFill, BsWifi } from "react-icons/bs";
+import {
+  BsSuitHeartFill,
+  BsWifi,
+  BsShareFill,
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 import { FaParking, FaShuttleVan, FaSmokingBan } from "react-icons/fa";
 import { GiCoffeeCup } from "react-icons/gi";
 import { IoIosStar, IoMdWine } from "react-icons/io";
 import { IoBedOutline } from "react-icons/io5";
-import { MdRoomService } from "react-icons/md";
+import { MdRoomService, MdLocationPin, MdCancel } from "react-icons/md";
+import { RiLeafLine } from "react-icons/ri";
 
 const IndividualHotel = () => {
+  const [slideNumber, setSlideNumber] = useState(0);
+  const [displaySlide, setDisplaySlide] = useState(false);
+  const handleSlide = (i) => {
+    setSlideNumber(i);
+    setDisplaySlide(true);
+  };
+  const handleSlideDirection = (direction) => {
+    let newSlideNumber;
+    if (direction === "l") {
+      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+    } else {
+      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+    }
+    setSlideNumber(newSlideNumber);
+  };
   const images = [
     {
-      src: "https://cf.bstatic.com/xdata/images/hotel/max500/160587622.jpg?k=347c06aad1e370c8613f9681ceb96bd76043fad63ed3ad8db6ef52484afa873b&o=&hp=1",
+      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
       alt: "a man sitting at a counter in a bar at Hotel Buddha in Kathmandu",
     },
     {
@@ -25,23 +48,23 @@ const IndividualHotel = () => {
       alt: "a hotel with two beds",
     },
     {
-      src: "https://cf.bstatic.com/xdata/images/hotel/max500/80954502.jpg?k=c71124e7bbe40df804cacba61b97f32751516d1d6a1aa57e37ca3add9248a39f&o=&hp=1",
+      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707367.jpg?k=cbacfdeb8404af56a1a94812575d96f6b80f6740fd491d02c6fc3912a16d8757&o=&hp=1",
       alt: "a bathroom with a sink, toilet, and bathtub at Hotel Buddha in Kathmandu",
     },
     {
-      src: "https://cf.bstatic.com/xdata/images/hotel/max300/80954499.jpg?k=281e430a90aaae6e97867fbd14374909a585afb1d2d212a5cedd05ce7af0a11b&o=&hp=1",
+      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261708745.jpg?k=1aae4678d645c63e0d90cdae8127b15f1e3232d4739bdf387a6578dc3b14bdfd&o=&hp=1",
       alt: "a bedroom with a bed and a dresser at Hotel Buddha in Kathmandu",
     },
     {
-      src: "https://cf.bstatic.com/xdata/images/hotel/max300/160587607.jpg?k=1a66baf9f75bb1944c272139d700e6b10e2a46b90363d5f6d7aa4441a1d07bd2&o=&hp=1",
+      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707776.jpg?k=054bb3e27c9e58d3bb1110349eb5e6e24dacd53fbb0316b9e2519b2bf3c520ae&o=&hp=1",
       alt: "a restaurant with tables, chairs and umbrellas at Hotel Buddha in Kathmandu",
     },
     {
-      src: "https://cf.bstatic.com/xdata/images/hotel/max300/160587590.jpg?k=26a93ba609779a2851eeee1c509c05ad15380216b8b827e551ca461d4b638c9b&o=&hp=1",
+      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261708693.jpg?k=ea210b4fa329fe302eab55dd9818c0571afba2abd2225ca3a36457f9afa74e94&o=&hp=1",
       alt: "an outdoor dining area with tables and chairs at Hotel Buddha in Kathmandu",
     },
     {
-      src: "https://cf.bstatic.com/xdata/images/hotel/max300/82243682.jpg?k=eff9a79112e15fffd1c328b8e4f951118daa63ac47cd8efe4716103d158f38a2&o=&hp=1",
+      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
       alt: "a room with a painting on the wall and a painting on the floor at Hotel Buddha in Kathmandu",
     },
   ];
@@ -52,13 +75,37 @@ const IndividualHotel = () => {
         <Header />
         <Navbar />
       </div>
+      {/* image slider */}
+      {displaySlide && (
+        <div className="sticky top-0 left-0 w-full h-screen z-10 flex items-center bg-[#dfcccc66]">
+          <MdCancel
+            className="w-8 h-8 absolute top-10 right-8 text-black hover:cursor-pointer"
+            onClick={() => setDisplaySlide(false)}
+          />
+          <BsFillArrowLeftCircleFill
+            className="w-8 h-8 text-black hover:cursor-pointer"
+            onClick={() => handleSlideDirection("l")}
+          />
+          <div className="flex justify-center items-center w-full h-full">
+            <img
+              src={images[slideNumber].src}
+              alt=""
+              className="w-[80vw] xs:w-[50vw] md:w-[80vw] lg:w-[50vw] h-[50vh]"
+            />
+          </div>
+          <BsFillArrowRightCircleFill
+            className="w-8 h-8 text-black hover:cursor-pointer"
+            onClick={() => handleSlideDirection("r")}
+          />
+        </div>
+      )}
       {/* form and grid */}
       <div className="w-full md:max-w-[1080px] mx-auto flex items-start gap-x-10 mt-8">
         <Form />
         {/* grid */}
-        <div>
+        <div className="relative">
           {/* title and star ratings */}
-          <div className="md:flex">
+          <div className="md:flex items-center">
             <h1 className="text-2xl font-bold">Hotel Buddha</h1>
             <span className="flex items-center px-2">
               <IoIosStar className="w-5 h-5 fill-highlight" />
@@ -66,7 +113,41 @@ const IndividualHotel = () => {
               <IoIosStar className="w-5 h-5 fill-highlight" />
               <AiFillLike className="w-5 h-5 fill-highlight" />
             </span>
+            <p className="text-xs hidden xs:flex items-center gap-1.5 mt-2 text-[#008009] bg-[#e7fde9] p-1">
+              <i>
+                <RiLeafLine className="w-4 h-4" />
+              </i>
+              Travel Sustainable Property
+            </p>
           </div>
+          {/* location */}
+          <div>
+            <p className="text-sm text-text flex items-center">
+              <MdLocationPin className="fill-secondary w-5 h-5" /> Chaksibari
+              Marg, Thamel, 2578 Kathmandu,Nepal -{" "}
+              <span className="text-sm font-bold text-secondary">
+                Excellent location - show map
+              </span>
+            </p>
+          </div>
+          {/* share and reserve button */}
+          <div className="flex items-center gap-x-4 absolute right-[2px] top-[2px]">
+            <BsSuitHeartFill className="fill-red-700 w-5 h-5" />
+            <BsShareFill className="fill-gray-400 w-5 h-5" />
+            <Button text="Reserve" padding="p-2" fontWeight="font-medium" />
+          </div>
+          {/* reserve button */}
+          <div className="flex items-center gap-x-1 text-xs font-bold absolute right-[2px] top-10">
+            <i>
+              <img
+                src="https://cf.bstatic.com/static/img/bpg/bpg_logo_retina/b4785e81dfbdb3907f75887373d5920d3dc3b245.png"
+                alt=""
+                className="w-4 h-4"
+              />
+            </i>
+            We Price Match
+          </div>
+
           {/* grid images */}
           <div className="gridContainer mt-3">
             {images.map((image, index) => (
@@ -75,6 +156,7 @@ const IndividualHotel = () => {
                 src={`${image.src}`}
                 alt={`${image.alt}`}
                 className="w-full object-cover h-full"
+                onClick={() => handleSlide(index)}
               />
             ))}
           </div>

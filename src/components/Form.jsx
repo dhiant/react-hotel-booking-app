@@ -3,7 +3,7 @@ import { useState } from "react";
 import { GoSearch } from "react-icons/go";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { BsQuestionCircle } from "react-icons/bs";
-import Button from "./reusable/Button";
+import Button from "./common/Button";
 import { Calendar } from "react-date-range";
 import * as locales from "react-date-range/dist/locale";
 import "react-date-range/dist/styles.css"; // main css file

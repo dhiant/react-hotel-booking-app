@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosStar } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
 import { RiLeafLine } from "react-icons/ri";
-import Button from "./reusable/Button";
+import Button from "./common/Button";
 import { BiChevronRight } from "react-icons/bi";
 const HotelItem = () => {
   return (
@@ -26,17 +26,19 @@ const HotelItem = () => {
           </span>
         </div>
         <div className="">
-        <p className="text-xs text-secondary font-semibold underline">
-          Thamel, Kathmandu
-          <span className="px-3">Show on map</span>
-          <span className="no-underline text-black hidden xs:block">2.5 km from centre</span>
-        </p>
-        <p className="text-xs hidden xs:flex items-center gap-1.5 mt-2">
-          <i>
-            <RiLeafLine className="w-4 h-4" />
-          </i>
-          Travel Sustainable Property
-        </p>
+          <p className="text-xs text-secondary font-semibold underline">
+            Thamel, Kathmandu
+            <span className="px-3">Show on map</span>
+            <span className="no-underline text-black hidden xs:block">
+              2.5 km from centre
+            </span>
+          </p>
+          <p className="text-xs hidden xs:flex items-center gap-1.5 mt-2">
+            <i>
+              <RiLeafLine className="w-4 h-4" />
+            </i>
+            Travel Sustainable Property
+          </p>
         </div>
         <div className="hidden sm:flex flex-col mt-2 pl-4">
           <h1 className="text-xs font-bold">Standard Double or Twin Room</h1>
@@ -62,7 +64,6 @@ const HotelItem = () => {
           <h1 className="text-sm font-bold text-secondary mt-1 xl:ml-8">
             Comfort 8.2
           </h1>
-          
         </div>
         {/* Cost */}
         <div className="hidden md:flex flex-col mt-3">
@@ -81,7 +82,7 @@ const HotelItem = () => {
           </div>
         </div>
         <div className="block md:hidden absolute bottom-1 xs:bottom-2 right-3">
-        <Button text = "Explore" padding="px-6 py-2" />
+          <Button text="Explore" padding="px-6 py-2" />
         </div>
       </div>
     </div>

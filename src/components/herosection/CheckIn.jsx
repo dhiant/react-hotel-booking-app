@@ -5,7 +5,7 @@ import { BsPerson } from "react-icons/bs";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
-import Button from "../reusable/Button";
+import Button from "../common/Button";
 
 // importing react date range
 import { DateRange } from "react-date-range";
@@ -21,7 +21,7 @@ import DestinationsName from "./DestinationsName";
 
 const CheckIn = () => {
   // show or hide search destinations div
-  const [displayDestination, setDisplayDestination] = useState("hidden");
+  const [displayDestination, setDisplayDestination] = useState(false);
   const [destination, setDestination] = useState("");
 
   // to hide and show the date calendar
@@ -68,10 +68,7 @@ const CheckIn = () => {
     } else {
       navigate("/hotels", { state: { destination, date, persons } });
     }
-    // navigate("/hotels", { state: { destination, date, persons } });
   };
-
-  console.log(destination);
   return (
     <div className="max-w-[1080px] mx-auto -mt-8">
       <div className="flex flex-col flex-wrap md:flex-row shadow-xl rounded bg-white">
@@ -89,10 +86,11 @@ const CheckIn = () => {
             type="search"
             placeholder="Where are you going?"
             className="px-8 py-3 w-full "
-            // onChange={(e) => setDestination(e.target.value)}
+            onChange={(e) => setDestination(e.target.value)}
             value={destination}
-            onFocus={() => setDisplayDestination("block")}
+            // onFocus={() => setDisplayDestination("block")}
             // onBlur={() => setDisplayDestination("hidden")}
+            onClick={() => setDisplayDestination(!displayDestination)}
           />
           {showWarning && (
             <>
@@ -102,22 +100,23 @@ const CheckIn = () => {
             </>
           )}
           {/*search destinations div */}
-          <div
-            className={` ${displayDestination} w-72 py-2 z-10 absolute bg-white top-14`}
-          >
-            <h1 className="text-sm font-normal mb-3 pl-3">
-              Popular nearby destinations
-            </h1>
-            {["Pokhara", "Kathmandu", "Nagarkot", "Sauraha", "Chitwan"].map(
-              (location, index) => (
-                <DestinationsName
-                  key={index}
-                  location={location}
-                  setDestination={setDestination}
-                />
-              )
-            )}
-          </div>
+          {displayDestination && (
+            <div className={`w-72 py-2 z-10 absolute bg-white top-14`}>
+              <h1 className="text-sm font-normal mb-3 pl-3">
+                Popular nearby destinations
+              </h1>
+              {["Pokhara", "Kathmandu", "Nagarkot", "Sauraha", "Chitwan"].map(
+                (location, index) => (
+                  <DestinationsName
+                    key={index}
+                    location={location}
+                    setDestination={setDestination}
+                    setDisplayDestination={setDisplayDestination}
+                  />
+                )
+              )}
+            </div>
+          )}
         </label>
         {/* Check in Check out date */}
         <label
