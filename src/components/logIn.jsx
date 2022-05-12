@@ -1,6 +1,6 @@
 import React from "react";
 
-const logIn = () => {
+const LogIn = () => {
   return (
     <div className="max-w-[1080px] mx-auto border-2 border-border px-4 py-3 mt-10 flex items-center bg-[url('https://cf.bstatic.com/static/img/genius-banner-world-bg/2b5cdbad7b92073bc396b8b59d0bb421b3a01cba.png')] bg-right-top bg-no-repeat">
       <div className="flex items-center justify-center w-40 h-40 min-w-[96px]">
@@ -28,4 +28,4 @@ const logIn = () => {
   );
 };
 
-export default logIn;
+export default LogIn;
