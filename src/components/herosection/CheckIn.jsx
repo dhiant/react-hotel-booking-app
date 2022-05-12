@@ -88,8 +88,8 @@ const CheckIn = () => {
             className="px-8 py-3 w-full "
             onChange={(e) => setDestination(e.target.value)}
             value={destination}
-            onFocus={() => setDisplayDestination("block")}
-            onBlur={() => setDisplayDestination("hidden")}
+            onFocus={() => setDisplayDestination(true)}
+            onBlur={() => setDisplayDestination(false)}
             // onClick={() => setDisplayDestination(!displayDestination)}
           />
           {showWarning && (
