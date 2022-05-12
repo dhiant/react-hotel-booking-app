@@ -33,8 +33,31 @@ const Form = () => {
   // const [date, setDate] = useState(location.state.date);
   // const [endDate,endDate]=useState(location.start.date[0].endDate)
   const [persons, setPersons] = useState(
-    location.state ? location.state.persons : []
+    location.state
+      ? location.state.persons
+      : {
+          adult: 2,
+          children: 0,
+          room: 1,
+        }
   );
+  const [toggle, setToggle] = useState(false);
+  const handleDecrease = (name) => {
+    setPersons((prevState) => {
+      return {
+        ...prevState,
+        [name]: prevState[name] === 0 ? 0 : prevState[name] - 1,
+      };
+    });
+  };
+  const handleIncrease = (name) => {
+    setPersons((prevState) => {
+      return {
+        ...prevState,
+        [name]: prevState[name] + 1,
+      };
+    });
+  };
 
   // react calendar
   const nameMapper = {
@@ -56,7 +79,7 @@ const Form = () => {
     .filter((item) => nameMapper[item.value]);
 
   return (
-    <form action="">
+    <form onSubmit={(e) => e.preventDefault()}>
       <div className="bg-highlight px-4 py-3 lg:ml-10 max-w-[280px] rounded-sm hidden lg:block">
         <h1 className="text-xl font-medium">Search</h1>
         {/* destination name */}
@@ -161,11 +184,14 @@ const Form = () => {
         )}
         {/* select persons children rooms */}
         <div className="">
-          <label htmlFor="" className="text-sm">
-            8-night stay
+          <label htmlFor="" className="text-sm relative">
+            8-nights stay
           </label>
           <br />
-          <button className="bg-white pl-4 py-1 flex lg:gap-x-1 w-full rounded-sm">
+          <button
+            className="bg-white pl-4 py-1 flex lg:gap-x-1 w-full rounded-sm"
+            onClick={() => setToggle(!toggle)}
+          >
             <span>{persons.adult} adults </span>
             <span className="leading-none font-bold">.</span>{" "}
             <span>{persons.children} children </span>
@@ -173,6 +199,94 @@ const Form = () => {
             <span>{persons.room} room</span>
           </button>
         </div>
+        {/* select no of persons children and room */}
+        {toggle && (
+          <div className="absolute top-14 bg-white shadow-xl px-6 py-3 w-72 z-10 ">
+            <div className="py-2">
+              <span className="mr-[22px]">Adults:</span>
+              <button
+                className="px-2  border-2 border-primary mx-2 shadow-md"
+                onClick={() => handleDecrease("adult")}
+              >
+                -
+              </button>
+              <span className="px-2">{persons.adult}</span>
+              <button
+                className="px-2  border-2 border-primary mx-2 shadow-md"
+                onClick={() => handleIncrease("adult")}
+              >
+                +
+              </button>
+            </div>
+            <div className="py-2">
+              <span className="mr-[7px]">Children:</span>
+              <button
+                className="px-2  border-2 border-primary mx-2 shadow-md"
+                onClick={() => handleDecrease("children")}
+              >
+                -
+              </button>
+              <span className="px-2">{persons.children}</span>
+              <button
+                className="px-2  border-2 border-primary mx-2 shadow-md"
+                onClick={() => handleIncrease("children")}
+              >
+                +
+              </button>
+            </div>
+            {/* to show & hide age needed div */}
+            {persons.children > 0 && (
+              <div>
+                <div className="">
+                  {[...Array(persons.children)].map((val, index) => (
+                    <select
+                      key={index}
+                      id="childAges"
+                      name="childAges"
+                      className="border-2 border-red-600 px-1 py-1 text-sm text-primary mb-1 mr-2"
+                    >
+                      <option value="null" className="text-black">
+                        Age needed
+                      </option>
+
+                      {[...Array(18)].map((val, index) => (
+                        <option
+                          key={index}
+                          value={index}
+                          className="text-black"
+                        >
+                          {index} years old
+                        </option>
+                      ))}
+                    </select>
+                  ))}
+                </div>
+                <p className="text-sm text-textLight p-1">
+                  To find you a place to stay that fits your entire group along
+                  with correct prices, we need to know how old your children
+                  will be at check-out
+                </p>
+              </div>
+            )}
+            {/* for selecting no of rooms */}
+            <div className="py-2">
+              <span className="mr-[18px]">Rooms:</span>
+              <button
+                className="px-2  border-2 border-primary mx-2 shadow-md"
+                onClick={() => handleDecrease("room")}
+              >
+                -
+              </button>
+              <span className="px-2">{persons.room}</span>
+              <button
+                className="px-2  border-2 border-primary mx-2 shadow-md"
+                onClick={() => handleIncrease("room")}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        )}
         {/* homes and apartments */}
         <div className="relative flex items-center mt-2">
           <input

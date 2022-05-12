@@ -90,7 +90,7 @@ const IndividualHotel = () => {
             <img
               src={images[slideNumber].src}
               alt=""
-              className="w-[80vw] xs:w-[50vw] md:w-[80vw] lg:w-[50vw] h-[50vh]"
+              className="w-[80vw] xs:w-[50vw] md:w-[80vwf] lg:w-[50vw] h-[50vh]"
             />
           </div>
           <BsFillArrowRightCircleFill
