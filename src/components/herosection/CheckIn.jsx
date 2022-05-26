@@ -90,7 +90,7 @@ const CheckIn = () => {
             value={destination}
             onFocus={() => setDisplayDestination(true)}
             onBlur={() => setDisplayDestination(false)}
-            // onClick={() => setDisplayDestination(!displayDestination)}
+            onClick={() => setDisplayDestination(!displayDestination)}
           />
           {showWarning && (
             <>
