@@ -5,39 +5,39 @@ import { ReturnDocument } from "mongodb";
 const router = express.Router();
 
 // create a new hotel (create operation)
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
 	try {
 		const newHotel = new Hotel(req.body);
 		const savedHotel = await newHotel.save();
 		res.status(201).json(savedHotel);
 	} catch (err) {
-		res.status(500).json(err);
+		next(err);
 	}
 });
 
 // get hotel (read operation)
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
 	try {
 		const hotel = await Hotel.findById(req.params.id);
 		if (!hotel) return res.status(404).json({ message: "Hotel not found" });
 		res.json(hotel);
 	} catch (err) {
-		res.status(500).json(err);
+		next(err);
 	}
 });
 
 // get all hotels (read operation)
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
 	try {
 		const allHotels = await Hotel.find();
 		res.status(200).json(allHotels);
 	} catch (err) {
-		res.status(500).json(err);
+		next(err);
 	}
 });
 
 // update a hotel (update operation)
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res, next) => {
 	try {
 		const id = req.params.id;
 		const update = req.body;
@@ -46,17 +46,17 @@ router.put("/:id", async (req, res) => {
 		});
 		res.status(200).json(updatedHotel);
 	} catch (err) {
-		res.status(500).json(err);
+		next(err);
 	}
 });
 
 // delete a hotel (delete operation)
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
 	try {
 		await Hotel.findByIdAndDelete(req.params.id);
 		res.status(200).json("Hotel has been deleted!");
 	} catch (err) {
-		res.status(500).json(err);
+		next(err);
 	}
 });
 

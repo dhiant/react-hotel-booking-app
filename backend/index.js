@@ -38,6 +38,15 @@ app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
 
+// define error-handling middleware
+app.use((err, req, res, next) => {
+	return res.json({
+		status: err.status || 500,
+		message: err.message || "Something went wrong!!",
+		stack: err.stack,
+	});
+});
+
 app.listen(PORT, () => {
 	console.log(`Server is listening on port ${PORT}`);
 	connect_to_mongodb();
