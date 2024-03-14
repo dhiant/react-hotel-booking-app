@@ -1,6 +1,9 @@
 // Implementing node-js built-in "Crypto" module to handle cryptographic functions
 
 const { createCipheriv } = await import("node:crypto");
+import dotenv from "dotenv";
+
+dotenv.config(); //  Load environment variables from .env file
 
 // define AES encryption algorithm with 256 bit key length
 const algorithm = "aes-256-cbc";
