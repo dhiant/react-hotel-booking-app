@@ -1,13 +1,18 @@
 import express from "express";
-import User from "../models/User.js";
 import {
 	deleteUser,
 	getAllUsers,
 	getSingleUser,
 	updateUser,
 } from "../controllers/user.js";
+import { verifyToken } from "../utils/verifyToken.js";
 
 const router = express.Router();
+
+// authenticate a user
+router.get("/authenticate", verifyToken, (req, res, next) => {
+	res.status(200).json({ message: "Congrats! Authentication successful" });
+});
 
 // crud operations
 

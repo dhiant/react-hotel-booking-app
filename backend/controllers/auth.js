@@ -1,5 +1,10 @@
 import { encrypt } from "../algorithms/AES_Cipher.js";
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
 
 //  register a new user
 export const register = async (req, res, next) => {
@@ -26,7 +31,20 @@ export const login = async (req, res, next) => {
 
 		// if username exists verify his/her password
 		if (user.password === encrypt(req.body.password)) {
-			console.log("password matched");
+			// create token and send it to client side
+			const { _id, isAdmin } = user._doc;
+
+			let token = jwt.sign(
+				{ _id, isAdmin },
+				process.env.JSON_WEB_TOKEN_SECRET_KEY
+			);
+
+			// set cookie in the response
+			res
+				.status(200)
+				.cookie("access_token", token, { httpOnly: true })
+				.json("password matched");
+
 			return res.status(200).json("password matched");
 		} else {
 			return res.status(401).json("Wrong Password");

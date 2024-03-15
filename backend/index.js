@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import usersRoute from "./routes/users.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -31,6 +32,7 @@ mongoose.connection.on("connected", () => {
 
 // parse JSON data sent in the request body
 app.use(express.json());
+app.use(cookieParser());
 
 // mount middlewares at the specified path
 app.use("/api/auth", authRoute);
