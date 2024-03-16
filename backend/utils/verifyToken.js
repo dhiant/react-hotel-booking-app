@@ -47,7 +47,7 @@ export const verifyAdmin = (req, res, next) => {
 	// first authenticate a user
 	verifyToken(req, res, () => {
 		// once the user is authenticated check if  he/her is an admin
-		if (req.userData._id === req.params.id && req.userData.isAdmin) {
+		if (req.userData.isAdmin) {
 			next();
 		} else {
 			res.status(403).json({
