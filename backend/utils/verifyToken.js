@@ -8,7 +8,6 @@ export const verifyToken = (req, res, next) => {
 	try {
 		// Get token from header
 		const token = req.cookies.access_token;
-		console.log("token", token);
 		if (!token)
 			return res
 				.status(401)
@@ -28,4 +27,33 @@ export const verifyToken = (req, res, next) => {
 	} catch (err) {
 		next(err);
 	}
+};
+
+// Authorization
+export const verifyUser = (req, res, next) => {
+	// first authenticate a user
+	verifyToken(req, res, () => {
+		// once the user is authenticated check if  he/her is an admin or a user with id
+		if (req.userData._id === req.params.id || req.userData.isAdmin) {
+			next();
+		} else {
+			res.status(401).send("You are not authorized to perform this action!");
+		}
+	});
+};
+
+// Authorization
+export const verifyAdmin = (req, res, next) => {
+	// first authenticate a user
+	verifyToken(req, res, () => {
+		// once the user is authenticated check if  he/her is an admin
+		if (req.userData._id === req.params.id && req.userData.isAdmin) {
+			next();
+		} else {
+			res.status(403).json({
+				message:
+					"Sorry! You are not an admin! You are not allowed to perform this action!",
+			});
+		}
+	});
 };
