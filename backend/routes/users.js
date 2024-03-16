@@ -34,16 +34,18 @@ router.get("/checkadmin/:id", verifyAdmin, (req, res, next) => {
 
 // creation of user has been done through registration in auth.js
 
+// only the verified personnels can perform the below tasks
+
 // get single user
-router.get("/:id", getSingleUser);
+router.get("/:id", verifyUser, getSingleUser);
 
 // get multiple users
-router.get("/", getAllUsers);
+router.get("/", verifyAdmin, getAllUsers);
 
 // update a user
-router.put("/:id", updateUser);
+router.put("/:id", verifyUser, updateUser);
 
 // delete a user
-router.delete("/:id", deleteUser);
+router.delete("/:id", verifyUser, deleteUser);
 
 export default router;
