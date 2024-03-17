@@ -1,20 +1,24 @@
 import React from "react";
-import Carousel from "../common/Carousel";
 import ImagePlaces from "./data/ImagePlaces";
 import ImageHotels from "./data/ImageHotels";
+import useFetch from "../../hooks/useFetch";
+import HotelsByCityName from "./HotelsByCityName";
+import HotelsByPropertyType from "./HotelsByPropertyType";
 
 const Gallery = (props) => {
-  return (
-    <div className="max-w-[1080px] mx-auto px-4 lg:px-0">
-      <h1 className="text-2xl font-bold mt-6">{props.exploreHeading}</h1>
-      <p className="text-base">{props.subHeading}</p>
-      <Carousel imageGallery={ImagePlaces} />
-      <div className="mt-8">
-        <h1 className="text-2xl font-bold mt-12">{props.propertyHeading}</h1>
-        <Carousel imageGallery={ImageHotels} />
-      </div>
-    </div>
-  );
+	return (
+		<div className="max-w-[1080px] mx-auto px-4 lg:px-0">
+			<HotelsByCityName
+				ImagePlaces={ImagePlaces}
+				exploreHeading={props.exploreHeading}
+				subHeading={props.subHeading}
+			/>
+			<HotelsByPropertyType
+				ImageHotels={ImageHotels}
+				propertyHeading={props.propertyHeading}
+			/>
+		</div>
+	);
 };
 
 export default Gallery;
