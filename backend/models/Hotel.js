@@ -12,6 +12,8 @@ const HotelSchema = new Schema({
 	photos: { type: [String], required: true },
 	desc: { type: String, required: true },
 	rating: { type: Number },
+	reviews: Number,
+	feedback: String,
 	rooms: { type: [String], required: true },
 	cheapestPrice: { type: Number, required: true },
 	featured: { type: Boolean, default: false },
