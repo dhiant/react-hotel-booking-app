@@ -6,6 +6,7 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import usersRoute from "./routes/users.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -30,6 +31,9 @@ mongoose.connection.on("connected", () => {
 	console.log("MongoDB is connected.");
 });
 
+// middlewares
+
+app.use(cors());
 // parse JSON data sent in the request body
 app.use(express.json());
 app.use(cookieParser());
