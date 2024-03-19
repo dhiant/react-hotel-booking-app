@@ -2,13 +2,9 @@ import React from "react";
 import Carousel from "../common/Carousel";
 import useFetch from "../../hooks/useFetch";
 
-const HotelsByCityName = ({
-	exploreHeading,
-	subHeading,
-	ImagePlaces,
-}) => {
+const HotelsByCityName = ({ exploreHeading, subHeading, ImagePlaces }) => {
 	const { data, error, loading } = useFetch(
-		"http://localhost:8000/api/hotels/count?cities=pokhara,Daman,kathmandu"
+		"http://localhost:8000/api/hotels/countbycity?cities=pokhara,kathmandu,nagarkot,sauraha"
 	);
 
 	if (loading) return "Loading";
