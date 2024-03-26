@@ -11,6 +11,8 @@ const HotelSchema = new Schema({
 	distance: { type: String, required: true },
 	photos: { type: [String], required: true },
 	desc: { type: String, required: true },
+	// provide extra information about hotel in individual page
+	details: { type: [String], required: true },
 	rating: { type: Number },
 	reviews: Number,
 	feedback: String,

@@ -1,21 +1,26 @@
 import React from "react";
 import Button from "./common/Button";
 import { BiChevronRight } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const HotelItem = ({ hotelDetail }) => {
 	return (
 		<div className="max-w-3xl px-2 py-3 border-2 border-border flex relative">
-			<img
-				src={hotelDetail?.photos[0]}
-				alt="a hotel room with two bed and two lamps located in Kathmandu Nepal"
-				className="w-40 h-40 sm:w-56 sm:h-48"
-			/>
+			<Link to={`/hotels/${hotelDetail._id}`}>
+				<img
+					src={hotelDetail?.photos[0]}
+					alt="a hotel room with two bed and two lamps located in Kathmandu Nepal"
+					className="w-40 h-40 sm:w-56 sm:h-48"
+				/>
+			</Link>
 			{/* Hotel Name and other details */}
-			<div className="mt-2 px-2">
+			<div className="mt-2 px-2 w-3/5">
 				<div className="md:flex">
-					<h1 className="text-xl font-bold text-secondary hover:text-highlight">
-						{hotelDetail.name}
-					</h1>
+					<Link to={`/hotels/${hotelDetail._id}`}>
+						<h1 className="text-xl font-bold text-secondary hover:text-highlight">
+							{hotelDetail.name}
+						</h1>
+					</Link>
 					{/* <span className="flex items-center px-2">
 						<IoIosStar className="w-5 h-5 fill-highlight" />
 						<IoIosStar className="w-5 h-5 fill-highlight" />
@@ -78,12 +83,16 @@ const HotelItem = ({ hotelDetail }) => {
 						Include taxes and charges
 					</p>
 					<div className="mt-3 relative">
-						<Button text="Explore" padding="px-4 py-3 pr-10" />
+						<Link to={`/hotels/${hotelDetail._id}`}>
+							<Button text="Explore" padding="px-4 py-3 pr-10" />
+						</Link>
 						<BiChevronRight className="absolute top-[10px] right-3 w-5 h-5 text-white" />
 					</div>
 				</div>
 				<div className="block md:hidden absolute bottom-1 xs:bottom-2 right-3">
-					<Button text="Explore" padding="px-6 py-2" />
+					<Link to={`/hotels/${hotelDetail._id}`}>
+						<Button text="Explore" padding="px-6 py-2" />
+					</Link>
 				</div>
 			</div>
 		</div>
