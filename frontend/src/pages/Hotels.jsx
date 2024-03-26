@@ -7,6 +7,7 @@ import MailList from "../components/MailList";
 import Footer from "../components/footer/Footer";
 import useFetch from "../hooks/useFetch";
 import { useLocation } from "react-router-dom";
+import HotelItemLoader from "../components/HotelItemLoader";
 
 const Hotels = () => {
 	const location = useLocation();
@@ -27,10 +28,8 @@ const Hotels = () => {
 		`http://localhost:8000/api/hotels/?city=${destination}&min=${minPrice}&max=${maxPrice}`
 	);
 
-	if (loading) return "Loading!!!";
 	if (error) return "Error Occurs!!";
-	console.log("data", data);
-
+	console.log(data);
 	return (
 		<div>
 			<div className="bg-primary pb-5">
@@ -48,11 +47,23 @@ const Hotels = () => {
 					setMaxPrice={setMaxPrice}
 					reFetch={reFetch}
 				/>
-				<div className="flex flex-col gap-4">
-					{data.map((hotel) => (
-						<HotelItem hotelDetail={hotel} />
-					))}
-				</div>
+				{loading && (
+					<div className="max-w-3xl">
+						<HotelItemLoader />
+					</div>
+				)}
+				{data && data.length > 0 ? (
+					<div className="flex flex-col gap-4">
+						{data.map((hotel) => (
+							<HotelItem hotelDetail={hotel} />
+						))}
+					</div>
+				) : (
+					<div className="max-w-3xl">
+						<p className="text-xl font-bold py-2">No Properties Found</p>
+						<HotelItemLoader />
+					</div>
+				)}
 			</div>
 			<MailList />
 			<Footer />
