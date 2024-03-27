@@ -37,7 +37,7 @@ export const login = async (req, res, next) => {
 			user.password === vigenereCipherEncrypt(req.body.password)
 		) {
 			// create token and send it to client side
-			const { _id, isAdmin } = user._doc;
+			const { _id, isAdmin, email, username } = user._doc;
 
 			let token = jwt.sign(
 				{ _id, isAdmin },
@@ -48,9 +48,7 @@ export const login = async (req, res, next) => {
 			res
 				.status(200)
 				.cookie("access_token", token, { httpOnly: true })
-				.json("password matched");
-
-			return res.status(200).json("password matched");
+				.json({ details: { _id, isAdmin, email, username } });
 		} else {
 			return res.status(401).json("Wrong Password");
 		}
