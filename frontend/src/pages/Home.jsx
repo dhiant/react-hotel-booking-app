@@ -1,16 +1,13 @@
 import React from "react";
-import HeroSection from "../components/herosection/HeroSection";
-import CheckIn from "../components/herosection/CheckIn";
 import Gallery from "../components/featured/Gallery";
-import SuggestedLocations from "../components/featured/SuggestedLocationsGallery";
 import GuestsTravelers from "../components/featured/Guests&Travelers";
+import CheckIn from "../components/herosection/CheckIn";
+import HeroSection from "../components/herosection/HeroSection";
 
 import HomeGuest from "../components/featured/data/HomeGuest";
-import OtherTravelers from "../components/featured/data/OtherTravelers";
-import LogIn from "../components/LogIn";
-import CountryList from "../components/CountryList";
-import MailList from "../components/MailList";
 import Footer from "../components/footer/Footer";
+import LogIn from "../components/LogIn";
+import MailList from "../components/MailList";
 
 const Home = () => {
 	return (
