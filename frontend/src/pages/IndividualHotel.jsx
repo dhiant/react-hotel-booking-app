@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./IndividualHotel.css";
@@ -22,6 +22,7 @@ import { IoBedOutline } from "react-icons/io5";
 import { MdRoomService, MdLocationPin, MdCancel } from "react-icons/md";
 import { RiLeafLine } from "react-icons/ri";
 import useFetch from "../hooks/useFetch";
+import { HotelSearchContext } from "../context/HotelSearchContext";
 
 const IndividualHotel = () => {
 	const [slideNumber, setSlideNumber] = useState(0);
@@ -34,7 +35,19 @@ const IndividualHotel = () => {
 		`http://localhost:8000/api/hotels/single/${id}`
 	);
 
-	console.log("data", data);
+	const { date, persons } = useContext(HotelSearchContext);
+
+	// 1 Day = 24 hr * 60 min * 60 sec
+	// 1 sec = 1000 ms
+	const MILLI_SECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+
+	function dayDifference(startDate, endDate) {
+		const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+		const diffDays = Math.ceil(timeDiff / MILLI_SECONDS_PER_DAY);
+		return diffDays;
+	}
+
+	const days = dayDifference(date[0].startDate, date[0].endDate);
 
 	if (error) return <div>Error</div>;
 	if (!loading && !data) return <div>Not found</div>;
@@ -187,7 +200,7 @@ const IndividualHotel = () => {
 							Property highlights
 						</h1>
 						<h1 className="text-sm font-bold text-black mt-2">
-							Perfect for an 8-night stay!
+							Perfect for an {days}-night stay!
 						</h1>
 						<div className="flex items-start gap-3 text-sm">
 							<BsSuitHeartFill className="w-9 h-9" />
@@ -208,10 +221,16 @@ const IndividualHotel = () => {
 							Breakfast info
 						</h1>
 						<p className="text-sm">Vegetarian, Gluten-free, Asian, American</p>
-						<div className="mt-5 mb-8 flex items-center gap-3 text-sm">
+						<div className="mt-5 flex items-center gap-3 text-sm">
 							<FaParking className="w-6 h-6" />
 							<p>Free private parking available at the hotel</p>
 						</div>
+						<p className="text-md py-2.5 font-semibold">
+							NPR {data && data.cheapestPrice * persons.room * days}{" "}
+							<span className="font-normal">
+								({days} nights - {persons.room} rooms)
+							</span>
+						</p>
 						<Button text="Reserve" padding="px-[4rem] sm:px-[7.5rem] py-3" />
 					</div>
 				</div>
