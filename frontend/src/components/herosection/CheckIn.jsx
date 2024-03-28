@@ -30,7 +30,7 @@ const CheckIn = () => {
 	const [date, setDate] = useState([
 		{
 			startDate: new Date(),
-			endDate: new Date(),
+			endDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
 			key: "selection",
 		},
 	]);
@@ -67,6 +67,7 @@ const CheckIn = () => {
 	};
 	// to navigate into hotels page
 	const navigate = useNavigate();
+
 	const handleSearch = () => {
 		if (destination === "") {
 			setShowWarning(true);
