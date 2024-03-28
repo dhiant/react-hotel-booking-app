@@ -8,6 +8,7 @@ import { HotelSearchContextProvider } from "./context/HotelSearchContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Checkout from "./pages/Checkout";
+import Register from "./pages/Register";
 
 const App = () => {
 	return (
@@ -19,6 +20,7 @@ const App = () => {
 						<Route path="/hotels" element={<Hotels />}></Route>
 						<Route path="/hotels/:id" element={<IndividualHotel />}></Route>
 						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
 						<Route path="/checkout" element={<Checkout />} />
 					</Routes>
 				</Router>
