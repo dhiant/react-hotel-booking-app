@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./IndividualHotel.css";
 import Header from "../components/herosection/Header";
-import Navbar from "../components/herosection/Navbar";
 import Button from "../components/common/Button";
 import MailList from "../components/MailList";
 import Footer from "../components/footer/Footer";
@@ -23,10 +22,13 @@ import { MdRoomService, MdLocationPin, MdCancel } from "react-icons/md";
 import { RiLeafLine } from "react-icons/ri";
 import useFetch from "../hooks/useFetch";
 import { HotelSearchContext } from "../context/HotelSearchContext";
+import { AuthContext } from "../context/AuthContext";
+import ReserveHotel from "../components/ReserveHotel";
 
 const IndividualHotel = () => {
 	const [slideNumber, setSlideNumber] = useState(0);
 	const [displaySlide, setDisplaySlide] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
 
 	const location = useLocation();
 	const id = location.pathname.split("/")[2];
@@ -36,6 +38,9 @@ const IndividualHotel = () => {
 	);
 
 	const { date, persons } = useContext(HotelSearchContext);
+	const { user } = useContext(AuthContext);
+
+	const navigate = useNavigate();
 
 	// 1 Day = 24 hr * 60 min * 60 sec
 	// 1 sec = 1000 ms
@@ -46,8 +51,10 @@ const IndividualHotel = () => {
 		const diffDays = Math.ceil(timeDiff / MILLI_SECONDS_PER_DAY);
 		return diffDays;
 	}
-
-	const days = dayDifference(date[0].startDate, date[0].endDate);
+	let days;
+	if (date) {
+		days = dayDifference(date[0].startDate, date[0].endDate);
+	}
 
 	if (error) return <div>Error</div>;
 	if (!loading && !data) return <div>Not found</div>;
@@ -67,12 +74,20 @@ const IndividualHotel = () => {
 		setSlideNumber(newSlideNumber);
 	};
 
+	const handleReserve = () => {
+		if (user) {
+			setOpenModal(true);
+		} else {
+			navigate("/login");
+		}
+	};
+
 	return (
 		<div>
 			{/* Navbar & Header */}
 			<div className="bg-primary pb-5">
 				<Header />
-				<Navbar />
+				{/* <Navbar /> */}
 			</div>
 
 			{/* image slider */}
@@ -134,7 +149,12 @@ const IndividualHotel = () => {
 					<div className="flex items-center gap-x-4 absolute right-[2px] top-[2px]">
 						<BsSuitHeartFill className="fill-red-700 w-5 h-5" />
 						<BsShareFill className="fill-gray-400 w-5 h-5" />
-						<Button text="Reserve" padding="p-2" fontWeight="font-medium" />
+						<Button
+							text="Reserve"
+							padding="p-2"
+							fontWeight="font-medium"
+							handleSearch={handleReserve}
+						/>
 					</div>
 					{/* reserve button */}
 					<div className="flex items-center gap-x-1 text-xs font-bold absolute right-[2px] top-10">
@@ -231,7 +251,11 @@ const IndividualHotel = () => {
 								({days} nights - {persons.room} rooms)
 							</span>
 						</p>
-						<Button text="Reserve" padding="px-[4rem] sm:px-[7.5rem] py-3" />
+						<Button
+							text="Reserve"
+							padding="px-[4rem] sm:px-[7.5rem] py-3"
+							handleSearch={handleReserve}
+						/>
 					</div>
 				</div>
 				{/* popular facilities */}
@@ -278,6 +302,9 @@ const IndividualHotel = () => {
 				</div>
 			</div>
 
+			{openModal && (
+				<ReserveHotel handleSetOpenModal={setOpenModal} hotelID={id} />
+			)}
 			<MailList />
 			<Footer />
 		</div>
