@@ -11,13 +11,17 @@ const Card = (props) => {
 				/>
 				<div className="text-start">
 					<p className="pt-3 font-bold text-base">{props.title}</p>
-					<p className="text-sm text-textLight">
-						{`${
-							props.propertyCount > 0
-								? props.propertyCount + " properties"
-								: "0 properties"
-						}`}
-					</p>
+					{props.heading === "Homes Guests Love" ? (
+						""
+					) : (
+						<p className="text-sm text-textLight">
+							{`${
+								props.propertyCount > 0
+									? props.propertyCount + " properties"
+									: "0 properties"
+							}`}
+						</p>
+					)}
 				</div>
 			</a>
 		</div>

@@ -75,6 +75,7 @@ const GuestsTravelers = (props) => {
 								imgWidth="w-full sm:w-64 md:w-56 lg:w-60"
 								imgHeight="h-56"
 								// propertyCount={item.distance}
+								heading="Homes Guests Love"
 							/>
 							<GuestDetails
 								// link={item.link}

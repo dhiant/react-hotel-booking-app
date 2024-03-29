@@ -15,7 +15,7 @@ const GuestDetails = (props) => {
 				</div>
 				<div className="">
 					<h1 className="text-md font-semibold">
-						${props.currency}
+						NPR {props.currency}
 						{props.cost}
 					</h1>
 					<div className={`flex gap-2 items-center mt-1 ${props.ratingBox}`}>

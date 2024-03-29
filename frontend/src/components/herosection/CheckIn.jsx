@@ -4,7 +4,6 @@ import { BiCalendar } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { HiOutlineInformationCircle } from "react-icons/hi";
 import Button from "../common/Button";
 
 // importing react date range
@@ -284,7 +283,7 @@ const CheckIn = () => {
 				<span className="px-4">I'm traveling for work</span>
 			</label>
 			{/* learn more */}
-			<div className="border-2 border-border px-4 py-3 mt-10 flex items-center">
+			{/* <div className="border-2 border-border px-4 py-3 mt-10 flex items-center">
 				<i className="bg-orange-100 p-3">
 					<HiOutlineInformationCircle className="w-5 h-5 stroke-orange-800" />
 				</i>
@@ -298,7 +297,7 @@ const CheckIn = () => {
 				>
 					Learn more
 				</a>
-			</div>
+			</div> */}
 		</div>
 	);
 };

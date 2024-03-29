@@ -120,7 +120,7 @@ const Carousel = ({ imageGallery, data }) => {
 				{imageGallery.map((item, index) => (
 					<Card
 						key={item.id}
-						link={item.link}
+						// link={item.link}
 						img={item.img}
 						title={item.title}
 						propertyCount={data && data[index]}

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./common/Button";
 
 const MailList = () => {
+	const [email, setEmail] = useState("");
+
 	return (
 		<div>
 			<div className="bg-primaryDark text-white py-12 mt-8">
@@ -16,7 +18,9 @@ const MailList = () => {
 						<input
 							type="text"
 							placeholder="Your email"
-							className="pl-2 py-4 w-96 rounded-md"
+							className="pl-2 py-4 w-96 rounded-md text-black"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<Button
 							text="Subscribe"
@@ -28,7 +32,7 @@ const MailList = () => {
 					<label htmlFor="subscribe" className="">
 						<input type="checkbox" name="" id="subscribe" />
 						<span className="ml-2 text-sm">
-							Send me a link to get the FREE Booking.com app!
+							Send me a link to get the FREE Roomies app!
 						</span>
 					</label>
 				</div>

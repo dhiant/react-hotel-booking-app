@@ -1,7 +1,6 @@
 import React from "react";
 import ImagePlaces from "./data/ImagePlaces";
 import ImageHotels from "./data/ImageHotels";
-import useFetch from "../../hooks/useFetch";
 import HotelsByCityName from "./HotelsByCityName";
 import HotelsByPropertyType from "./HotelsByPropertyType";
 
