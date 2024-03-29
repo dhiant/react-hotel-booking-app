@@ -19,6 +19,7 @@
     "react-tooltip": "^4.2.21",
     "slick-carousel": "^1.8.1",
     "swiper": "^8.1.4",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

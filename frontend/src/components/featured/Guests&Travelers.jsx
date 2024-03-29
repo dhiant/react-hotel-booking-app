@@ -13,6 +13,7 @@ import "swiper/css/navigation";
 // importing Custom CSS
 import "../styles/SwiperCarousel.css";
 import useFetch from "../../hooks/useFetch";
+import CarouselLoader from "../CarouselLoader";
 // import "swiper/css/thumbs";
 
 const GuestsTravelers = (props) => {
@@ -20,9 +21,24 @@ const GuestsTravelers = (props) => {
 		"http://localhost:8000/api/hotels/?featured=true"
 	);
 
-	if (loading) return "Loading!!!";
-	if (error) return "Error Occur!!";
-	console.log(data);
+	if (loading || error)
+		return (
+			<div className="max-w-[1080px] mx-auto px-4 lg:px-0">
+				<h1 className="text-2xl font-bold mt-6">{props.heading}</h1>
+				<CarouselLoader
+					contentLoaderWidth="1100"
+					contentLoaderHeight="250"
+					rectData={[
+						{ x: 15, y: 20 },
+						{ x: 280, y: 20 },
+						{ x: 545, y: 20 },
+						{ x: 810, y: 20 },
+					]}
+					rectWidth="240"
+					rectHeight="224"
+				/>
+			</div>
+		);
 
 	return (
 		<div className="max-w-[1080px] mx-auto px-4 lg:px-0">
