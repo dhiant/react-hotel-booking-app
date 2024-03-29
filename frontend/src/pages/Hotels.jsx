@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/herosection/Header";
-import Navbar from "../components/herosection/Navbar";
 import Form from "../components/Form";
 import HotelItem from "../components/HotelItem";
 import MailList from "../components/MailList";
@@ -8,8 +7,12 @@ import Footer from "../components/footer/Footer";
 import useFetch from "../hooks/useFetch";
 import { useLocation } from "react-router-dom";
 import HotelItemLoader from "../components/HotelItemLoader";
+import mergeSort from "../algorithms/MergeSort";
 
 const Hotels = () => {
+	const [showSortedHotels, setShowSortedHotels] = useState(false);
+	const [sortedHotels, setSortedHotels] = useState([]);
+
 	const location = useLocation();
 
 	// destination from home page
@@ -28,13 +31,35 @@ const Hotels = () => {
 		`http://localhost:8000/api/hotels/?city=${destination}&min=${minPrice}&max=${maxPrice}`
 	);
 
-	if (error) return "Error Occurs!!";
-	console.log(data);
+	const handleHotelsSort = () => {
+		setShowSortedHotels(true);
+	};
+
+	useEffect(() => {
+		let sortedHotels = [];
+
+		if (data) {
+			let priceOfHotels = data.map((hotel) => hotel.cheapestPrice);
+
+			// invoke mergeSort function
+			let sortedPriceOfHotels = mergeSort(priceOfHotels);
+
+			for (let i = 0; i < sortedPriceOfHotels.length; i++) {
+				data.map(
+					(hotel) =>
+						hotel.cheapestPrice === sortedPriceOfHotels[i] &&
+						sortedHotels.push(hotel)
+				);
+			}
+		}
+		setSortedHotels(sortedHotels);
+	}, [data]);
+
 	return (
 		<div>
 			<div className="bg-primary pb-5">
 				<Header />
-				<Navbar />
+				{/* <Navbar /> */}
 			</div>
 			<div className="flex items-start justify-center gap-x-10 mt-8">
 				<Form
@@ -47,16 +72,22 @@ const Hotels = () => {
 					setMaxPrice={setMaxPrice}
 					reFetch={reFetch}
 				/>
-				{loading && (
+				{(loading || error) && (
 					<div className="max-w-3xl">
 						<HotelItemLoader />
 					</div>
 				)}
 				{data && data.length > 0 ? (
 					<div className="flex flex-col gap-4">
-						{data.map((hotel) => (
-							<HotelItem hotelDetail={hotel} />
-						))}
+						<button
+							className="max-w-max bg-primary text-white p-2"
+							onClick={handleHotelsSort}
+						>
+							Sort by Lowest Price
+						</button>
+						{showSortedHotels
+							? sortedHotels.map((hotel) => <HotelItem hotelDetail={hotel} />)
+							: data.map((hotel) => <HotelItem hotelDetail={hotel} />)}
 					</div>
 				) : (
 					<div className="max-w-3xl">
