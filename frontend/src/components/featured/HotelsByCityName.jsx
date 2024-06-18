@@ -4,39 +4,39 @@ import useFetch from "../../hooks/useFetch";
 import CarouselLoader from "../CarouselLoader";
 
 const HotelsByCityName = ({ exploreHeading, subHeading, ImagePlaces }) => {
-	const { data, error, loading } = useFetch(
-		"http://localhost:8000/api/hotels/countbycity?cities=pokhara,kathmandu,nagarkot,sauraha"
-	);
+  const { data, error, loading } = useFetch(
+    "https://react-hotel-enroll.onrender.com/api/hotels/countbycity?cities=pokhara,kathmandu,nagarkot,sauraha"
+  );
 
-	if (loading || error)
-		return (
-			<>
-				<h1 className="text-2xl font-bold mt-6">{exploreHeading}</h1>
-				<p className="text-base">{subHeading}</p>
-				<CarouselLoader
-					contentLoaderWidth="1100"
-					contentLoaderHeight="150"
-					rectData={[
-						{ x: 15, y: 20 },
-						{ x: 190, y: 20 },
-						{ x: 365, y: 20 },
-						{ x: 540, y: 20 },
-						{ x: 715, y: 20 },
-						{ x: 890, y: 20 },
-					]}
-					rectWidth="165"
-					rectHeight="140"
-				/>
-			</>
-		);
+  if (loading || error)
+    return (
+      <>
+        <h1 className="text-2xl font-bold mt-6">{exploreHeading}</h1>
+        <p className="text-base">{subHeading}</p>
+        <CarouselLoader
+          contentLoaderWidth="1100"
+          contentLoaderHeight="150"
+          rectData={[
+            { x: 15, y: 20 },
+            { x: 190, y: 20 },
+            { x: 365, y: 20 },
+            { x: 540, y: 20 },
+            { x: 715, y: 20 },
+            { x: 890, y: 20 },
+          ]}
+          rectWidth="165"
+          rectHeight="140"
+        />
+      </>
+    );
 
-	return (
-		<>
-			<h1 className="text-2xl font-bold mt-6">{exploreHeading}</h1>
-			<p className="text-base">{subHeading}</p>
-			<Carousel imageGallery={ImagePlaces} data={data} />
-		</>
-	);
+  return (
+    <>
+      <h1 className="text-2xl font-bold mt-6">{exploreHeading}</h1>
+      <p className="text-base">{subHeading}</p>
+      <Carousel imageGallery={ImagePlaces} data={data} />
+    </>
+  );
 };
 
 export default HotelsByCityName;
